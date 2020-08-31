@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Grid.gd" type="Script" id=2]
+
+[node name="Grid" type="TileMap"]
+cell_size = Vector2( 32, 32 )
+format = 1
+script = ExtResource( 2 )
