@@ -3,10 +3,12 @@ extends KinematicBody2D
 
 var speed = 100
 var gravity = 600
-var jumpForce = 200
+var jumpForceHigh = 200
+var jumpForceLow = 100
 var velocity = Vector2()
-var flashing = false
-var flashingTime = 10
+var dashing = false
+var dashingTime = 10
+var dashSpeed = 300
 var Ghost = preload("res://Ghost.tscn")
 
 
@@ -16,7 +18,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	if !flashing:
+	if !dashing:
 		velocity.x = 0
 		# velocity.y = 0
 		#
@@ -33,24 +35,26 @@ func _physics_process(delta):
 	velocity.y += gravity * delta
 		
 	# jump inputs
-	if Input.is_action_pressed("jump") and is_on_floor() and !flashing:
-		velocity.y -= jumpForce
+	if Input.is_action_just_pressed("jump") and is_on_floor() and !dashing:
+		velocity.y -= jumpForceHigh
 		
-	if Input.is_action_just_pressed("flash") and !is_on_floor():
-		# velocity.x += speed * 2
-		# $Timer.start()
-		flashing = true
+	if Input.is_action_just_released("jump") and !is_on_floor() and velocity.y < 0:
+		velocity.y = -jumpForceLow
+		
+		
+	if Input.is_action_just_pressed("dash") and !is_on_floor():
+		dashing = true
 		gravity = 0
 		velocity.y = 0
-		# jumpForce = 0
-		# speed = 500
 		
 		$Timer.start()
-		if $Entiy.flip_h == true:
-			velocity.x -= 300
+		if Input.is_action_pressed('move_up'):
+			velocity.y = -dashSpeed
 		else:
-			velocity.x += 300
-		#$Timer.stop()
+			if $Entiy.flip_h == true:
+				velocity.x -= dashSpeed
+			else:
+				velocity.x += dashSpeed
 		
 	if velocity.x < 0:
 		$Entiy.flip_h = true
@@ -69,15 +73,15 @@ func flash(delta):
 
 func _on_Timer_timeout():
 	
-	if flashingTime > 0:
-		flashingTime -= 1
+	if dashingTime > 0:
+		dashingTime -= 1
 		var ghost = Ghost.instance()
 		ghost.position = position
 		ghost.find_node('Sprite').flip_h = $Entiy.flip_h
 		get_parent().add_child(ghost)
 	else:
-		flashingTime = 10
+		dashingTime = 10
 		velocity.x = 0
 		gravity = 600
-		flashing = false
+		dashing = false
 		$Timer.stop()

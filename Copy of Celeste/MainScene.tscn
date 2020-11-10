@@ -622,13 +622,14 @@ centered = false
 position = Vector2( 88, 76 )
 scale = Vector2( 1, 0.791016 )
 texture = ExtResource( 7 )
-texture_scale = 0.1
+texture_scale = 0.2
 color = Color( 0.623529, 0.6, 0.235294, 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Sprite" type="Sprite" parent="Light2D"]
+visible = false
 scale = Vector2( 0.00792969, 0.0087037 )
 texture = ExtResource( 7 )
 
@@ -651,6 +652,20 @@ script = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="Light2D2" type="Light2D" parent="Player"]
+scale = Vector2( 1, 0.791016 )
+texture = ExtResource( 7 )
+texture_scale = 0.1
+color = Color( 0.623529, 0.6, 0.235294, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Player/Light2D2"]
+visible = false
+scale = Vector2( 0.00792969, 0.0087037 )
+texture = ExtResource( 7 )
 
 [node name="Entiy" type="Sprite" parent="Player"]
 texture = ExtResource( 3 )
@@ -847,4 +862,7 @@ script = ExtResource( 13 )
 position = Vector2( -27.5931, -0.671646 )
 rotation = -2.33524
 script = ExtResource( 13 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.196078, 0.196078, 0.196078, 1 )
 [connection signal="timeout" from="Player/Timer" to="Player" method="_on_Timer_timeout"]
