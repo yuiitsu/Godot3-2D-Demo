@@ -12,7 +12,7 @@
 [node name="Main" type="Node2D"]
 
 [node name="Player" type="KinematicBody2D" parent="."]
-position = Vector2( 502, 470 )
+position = Vector2( 280, 324 )
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 4 )
 __meta__ = {
