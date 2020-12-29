@@ -882,5 +882,14 @@ visible = false
 color = Color( 0.196078, 0.196078, 0.196078, 1 )
 
 [node name="Fall" parent="." instance=ExtResource( 17 )]
-position = Vector2( 123.07, 77.3815 )
+position = Vector2( 107.215, 77.5218 )
+
+[node name="Fall2" parent="." instance=ExtResource( 17 )]
+position = Vector2( 126.417, 77.5902 )
+
+[node name="Fall3" parent="." instance=ExtResource( 17 )]
+position = Vector2( 145.78, 77.4499 )
+
+[node name="Fall4" parent="." instance=ExtResource( 17 )]
+position = Vector2( 164.441, 77.4499 )
 [connection signal="timeout" from="Player/Timer" to="Player" method="_on_Timer_timeout"]

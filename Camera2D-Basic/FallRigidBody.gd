@@ -19,3 +19,8 @@ func _ready():
 func _on_Area2D_body_entered(body):
 	gravity_scale = 1
 	can_sleep = true
+
+
+func _on_RigidBody2D_sleeping_state_changed():
+	if sleeping:
+		queue_free()
