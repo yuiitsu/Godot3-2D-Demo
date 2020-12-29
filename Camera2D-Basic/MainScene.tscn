@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Celeste-copy-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Celeste-copy.png" type="Texture" id=2]
@@ -13,7 +13,8 @@
 [ext_resource path="res://Sprite-0008-Sheet.png" type="Texture" id=11]
 [ext_resource path="res://Snow.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Snow.gd" type="Script" id=13]
-[ext_resource path="res://Position2D.gd" type="Script" id=14]
+[ext_resource path="res://Camera2D.gd" type="Script" id=14]
+[ext_resource path="res://Fall.tscn" type="PackedScene" id=17]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 104, 8, 0, 8, 0, 0, 104, 0 )
@@ -618,16 +619,6 @@ _data = {
 texture = ExtResource( 2 )
 centered = false
 
-[node name="Scene2" type="Sprite" parent="."]
-position = Vector2( 320, 0 )
-texture = ExtResource( 2 )
-centered = false
-
-[node name="Scene3" type="Sprite" parent="."]
-position = Vector2( 0, -182 )
-texture = ExtResource( 2 )
-centered = false
-
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( 88, 76 )
 scale = Vector2( 1, 0.791016 )
@@ -643,29 +634,28 @@ visible = false
 scale = Vector2( 0.00792969, 0.0087037 )
 texture = ExtResource( 7 )
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." groups=[
+"tilemap",
+]]
 tile_set = SubResource( 16 )
 cell_size = Vector2( 8, 8 )
 format = 1
-tile_data = PoolIntArray( -131054, 10, 0, 27, 17, 0, 131092, 10, 0, 131099, 18, 0, 131103, 15, 0, 196634, 23, 0, 262175, 16, 0, 262176, 14, 0, 458775, 10, 0, 524298, 19, 0, 524300, 22, 0, 655360, 21, 0, 983053, 1, 0, 983066, 5, 0, 1048604, 20, 0, 1048608, 11, 0, 1048615, 0, 0, 1114112, 0, 0, 1114128, 2, 0, 1114140, 6, 0, 1114145, 12, 0, 1114150, 13, 0, 1179671, 4, 0, 1179675, 9, 0, 1245199, 3, 0, 1245201, 7, 0, 1376278, 8, 0 )
+tile_data = PoolIntArray( 27, 17, 0, 131092, 10, 0, 131099, 18, 0, 131103, 15, 0, 196634, 23, 0, 262175, 16, 0, 262176, 14, 0, 458763, 10, 0, 458766, 10, 0, 458769, 10, 0, 458772, 10, 0, 458775, 10, 0, 524298, 19, 0, 524300, 22, 0, 655360, 21, 0, 983053, 1, 0, 983066, 5, 0, 1048604, 20, 0, 1048608, 11, 0, 1114112, 0, 0, 1114128, 2, 0, 1114140, 6, 0, 1114145, 12, 0, 1114150, 13, 0, 1179671, 4, 0, 1179675, 9, 0, 1245199, 3, 0, 1245201, 7, 0, 1376278, 8, 0 )
 
-[node name="Position2D" type="Position2D" parent="."]
-script = ExtResource( 14 )
-
-[node name="Camera2D" type="Camera2D" parent="Position2D"]
-anchor_mode = 0
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 74.125, 128 )
 current = true
 zoom = Vector2( 0.25, 0.25 )
-smoothing_enabled = true
-drag_margin_left = 0.1
-drag_margin_top = 0.1
-drag_margin_right = 0.1
-drag_margin_bottom = 0.1
+drag_margin_h_enabled = true
+editor_draw_limits = true
 editor_draw_drag_margin = true
+script = ExtResource( 14 )
 
 [node name="Player" type="KinematicBody2D" parent="."]
-position = Vector2( 123.125, 111.625 )
+position = Vector2( 74.125, 128 )
 z_index = 1
+collision_layer = 3
+collision_mask = 3
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true
@@ -693,6 +683,9 @@ shape = SubResource( 17 )
 
 [node name="Timer" type="Timer" parent="Player"]
 wait_time = 0.01
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
 
 [node name="Grass" type="Node" parent="."]
 
@@ -887,4 +880,7 @@ script = ExtResource( 13 )
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
 color = Color( 0.196078, 0.196078, 0.196078, 1 )
+
+[node name="Fall" parent="." instance=ExtResource( 17 )]
+position = Vector2( 123.07, 77.3815 )
 [connection signal="timeout" from="Player/Timer" to="Player" method="_on_Timer_timeout"]

@@ -62,6 +62,9 @@ func _physics_process(delta):
 	if velocity.x > 0:
 		$Entiy.flip_h = false
 		
+	if position.y > 184:
+		queue_free()
+		
 
 func flash(delta):
 	if $Entiy.flip_h == true:
@@ -86,3 +89,4 @@ func _on_Timer_timeout():
 		gravity = 600
 		dashing = false
 		$Timer.stop()
+
