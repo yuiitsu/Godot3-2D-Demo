@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 
 var speed = 100
-var gravity = 600
+var gravity = 0
 var jumpForceHigh = 200
 var jumpForceLow = 100
 var velocity = Vector2()
@@ -36,6 +36,7 @@ func _physics_process(delta):
 	
 	var was_grounded = is_grounded
 	is_grounded = is_on_floor()
+	print(is_grounded)
 	if was_grounded == null || is_grounded != was_grounded:
 		emit_signal("grounded_update", is_grounded)
 	

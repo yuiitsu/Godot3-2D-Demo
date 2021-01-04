@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Camera2D-Basic"
+config/name="Camera2D-Advanced"
 run/main_scene="res://MainScene.tscn"
 config/icon="res://icon.png"
 

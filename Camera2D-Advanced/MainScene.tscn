@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Celeste-copy-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Celeste-copy.png" type="Texture" id=2]
@@ -14,7 +14,6 @@
 [ext_resource path="res://Snow.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Snow.gd" type="Script" id=13]
 [ext_resource path="res://Camera2D.gd" type="Script" id=14]
-[ext_resource path="res://Fall.tscn" type="PackedScene" id=17]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 104, 8, 0, 8, 0, 0, 104, 0 )
@@ -619,6 +618,11 @@ _data = {
 texture = ExtResource( 2 )
 centered = false
 
+[node name="Scene2" type="Sprite" parent="."]
+position = Vector2( 0, -184 )
+texture = ExtResource( 2 )
+centered = false
+
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( 88, 76 )
 scale = Vector2( 1, 0.791016 )
@@ -640,22 +644,22 @@ texture = ExtResource( 7 )
 tile_set = SubResource( 16 )
 cell_size = Vector2( 8, 8 )
 format = 1
-tile_data = PoolIntArray( 27, 17, 0, 131092, 10, 0, 131099, 18, 0, 131103, 15, 0, 196634, 23, 0, 262175, 16, 0, 262176, 14, 0, 458763, 10, 0, 458766, 10, 0, 458769, 10, 0, 458772, 10, 0, 458775, 10, 0, 524298, 19, 0, 524300, 22, 0, 655360, 21, 0, 983053, 1, 0, 983066, 5, 0, 1048604, 20, 0, 1048608, 11, 0, 1114112, 0, 0, 1114128, 2, 0, 1114140, 6, 0, 1114145, 12, 0, 1114150, 13, 0, 1179671, 4, 0, 1179675, 9, 0, 1245199, 3, 0, 1245201, 7, 0, 1376278, 8, 0 )
+tile_data = PoolIntArray( 27, 17, 0, 131092, 10, 0, 131099, 18, 0, 131103, 15, 0, 196634, 23, 0, 262175, 16, 0, 262176, 14, 0, 458769, 10, 0, 458772, 10, 0, 458775, 10, 0, 524298, 19, 0, 524300, 22, 0, 589838, 10, 0, 655360, 21, 0, 786444, 10, 0, 983050, 10, 0, 983053, 1, 0, 983066, 5, 0, 1048604, 20, 0, 1048608, 11, 0, 1114112, 0, 0, 1114128, 2, 0, 1114140, 6, 0, 1114145, 12, 0, 1114150, 13, 0, 1179671, 4, 0, 1179675, 9, 0, 1245199, 3, 0, 1245201, 7, 0, 1376278, 8, 0 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 74.125, 128 )
+position = Vector2( 46.5, 127.875 )
 current = true
 zoom = Vector2( 0.25, 0.25 )
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 smoothing_enabled = true
-drag_margin_top = 0.75
+drag_margin_top = 0.8
 editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource( 14 )
 
 [node name="Player" type="KinematicBody2D" parent="."]
-position = Vector2( 74.125, 128 )
+position = Vector2( 46.5, 127.875 )
 z_index = 1
 script = ExtResource( 4 )
 __meta__ = {
@@ -767,7 +771,6 @@ anims/Swing = SubResource( 23 )
 [node name="Snows" type="Node" parent="."]
 
 [node name="SnowBox" type="Node2D" parent="Snows"]
-visible = false
 position = Vector2( 125, 11 )
 
 [node name="Path2D" type="Path2D" parent="Snows/SnowBox"]
@@ -803,7 +806,6 @@ rotation = -2.33524
 script = ExtResource( 13 )
 
 [node name="SnowBox2" type="Node2D" parent="Snows"]
-visible = false
 position = Vector2( 7, 12 )
 
 [node name="Path2D" type="Path2D" parent="Snows/SnowBox2"]
@@ -833,7 +835,6 @@ rotation = -2.33524
 script = ExtResource( 13 )
 
 [node name="SnowBox3" type="Node2D" parent="Snows"]
-visible = false
 position = Vector2( 25, -66 )
 rotation = -0.0645772
 
@@ -877,23 +878,5 @@ script = ExtResource( 13 )
 position = Vector2( -27.5931, -0.671646 )
 rotation = -2.33524
 script = ExtResource( 13 )
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
-color = Color( 0.196078, 0.196078, 0.196078, 1 )
-
-[node name="Falls" type="Node" parent="."]
-
-[node name="Fall" parent="Falls" instance=ExtResource( 17 )]
-position = Vector2( 107.215, 77.5218 )
-
-[node name="Fall2" parent="Falls" instance=ExtResource( 17 )]
-position = Vector2( 126.417, 77.5902 )
-
-[node name="Fall3" parent="Falls" instance=ExtResource( 17 )]
-position = Vector2( 145.78, 77.4499 )
-
-[node name="Fall4" parent="Falls" instance=ExtResource( 17 )]
-position = Vector2( 164.441, 77.4499 )
 [connection signal="grounded_update" from="Player" to="Camera2D" method="_on_Player_grounded_update"]
 [connection signal="timeout" from="Player/Timer" to="Player" method="_on_Timer_timeout"]

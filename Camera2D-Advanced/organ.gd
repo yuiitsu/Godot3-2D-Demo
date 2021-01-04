@@ -16,11 +16,18 @@ func _ready():
 #	pass
 
 
+
+
 func _on_Area2D_body_entered(body):
+	
 	gravity_scale = 1
+	can_sleep = true
+	print(sleeping)
+	pass
+
+
+func _on_organ_sleeping_state_changed():
+	print(sleeping)
 	# can_sleep = true
-
-
-func _on_RigidBody2D_sleeping_state_changed():
 	if sleeping:
 		queue_free()
