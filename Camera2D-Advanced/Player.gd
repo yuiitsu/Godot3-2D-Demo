@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 
 var speed = 100
-var gravity = 0
+var gravity = 600
 var jumpForceHigh = 200
 var jumpForceLow = 100
 var velocity = Vector2()
@@ -17,6 +17,7 @@ signal grounded_update(is_grounded)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print(position)
 	pass # Replace with function 
 
 
@@ -30,13 +31,13 @@ func _physics_process(delta):
 		
 		if Input.is_action_pressed("move_right"):
 			velocity.x += speed
+			print(position)
 		
 		
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
 	var was_grounded = is_grounded
 	is_grounded = is_on_floor()
-	print(is_grounded)
 	if was_grounded == null || is_grounded != was_grounded:
 		emit_signal("grounded_update", is_grounded)
 	
