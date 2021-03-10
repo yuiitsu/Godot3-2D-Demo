@@ -107,6 +107,7 @@ func _on_Timer_timeout():
 	else:
 		dashingTime = 10
 		velocity.x = 0
+		velocity.y = 0
 		gravity = 600
 		dashing = false
 		$Timer.stop()
