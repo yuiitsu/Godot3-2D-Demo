@@ -1,20 +1,21 @@
 extends KinematicBody2D
 
 
-var speed = 100
-var gravity = 600
+var speed = 80
+var gravity = 500
 var jumpForceHigh = 200
-var jumpForceLow = 100
+var jumpForceLow = 150
 var velocity = Vector2()
 var dashing = false
 var dashingTime = 10
 var dashSpeed = 300
 var Ghost = preload("res://Ghost.tscn")
+var state_machine
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function 
+	state_machine = $Entiy/AnimationPlayer/AnimationTree.get("parameters/playback")
 
 
 func _physics_process(delta):
@@ -31,15 +32,38 @@ func _physics_process(delta):
 		
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
-	# gravity
-	velocity.y += gravity * delta
+	if velocity.length() == 0:
+		state_machine.travel('Idle')
+		
+	if velocity.length() > 0:
+		state_machine.travel('Run')
+	
+	
 		
 	# jump inputs
 	if Input.is_action_just_pressed("jump") and is_on_floor() and !dashing:
+		# velocity.y -= jumpForceHigh
 		velocity.y -= jumpForceHigh
+		#print(velocity.y)
 		
-	if Input.is_action_just_released("jump") and !is_on_floor() and velocity.y < 0:
-		velocity.y = -jumpForceLow
+	if Input.is_action_just_released("jump") and !is_on_floor() :
+		# velocity.y = -0
+		#print(velocity.y)
+		if jumpForceHigh - abs(velocity.y) < jumpForceLow:
+			var y = jumpForceLow - (jumpForceHigh - abs(velocity.y))
+			#print('velocity.y: ' + str(velocity.y) + 'dis: ' + str(y))
+			# velocity.y += abs(velocity.y) - y
+			if y > 50:
+				#velocity.y = 0
+				velocity.y += jumpForceHigh - jumpForceLow
+				#velocity.y -= y
+			#print('velocity.y: ' + str(velocity.y))
+			#velocity.y += 
+	#if !is_on_floor():
+	#	print(velocity.y)
+	
+	#if !is_on_floor():
+		#print('gravity: ' + str(gravity * delta) + ', y: ' + str(velocity.y))
 		
 		
 	if Input.is_action_just_pressed("dash") and !is_on_floor():
@@ -49,7 +73,7 @@ func _physics_process(delta):
 		
 		$Timer.start()
 		if Input.is_action_pressed('move_up'):
-			velocity.y = -dashSpeed
+			velocity.y = -150
 		else:
 			if $Entiy.flip_h == true:
 				velocity.x -= dashSpeed
@@ -62,6 +86,7 @@ func _physics_process(delta):
 	if velocity.x > 0:
 		$Entiy.flip_h = false
 		
+	velocity.y += gravity * delta
 
 func flash(delta):
 	if $Entiy.flip_h == true:
