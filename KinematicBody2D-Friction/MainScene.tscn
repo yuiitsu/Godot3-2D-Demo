@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Celeste-copy-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Celeste-copy.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Snow.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Snow.gd" type="Script" id=13]
 [ext_resource path="res://Camera2D.gd" type="Script" id=14]
+[ext_resource path="res://MainScene.gd" type="Script" id=15]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 104, 8, 0, 8, 0, 0, 104, 0 )
@@ -613,6 +614,7 @@ _data = {
 }
 
 [node name="MainScene" type="Node2D"]
+script = ExtResource( 15 )
 
 [node name="Scene1" type="Sprite" parent="."]
 texture = ExtResource( 2 )
