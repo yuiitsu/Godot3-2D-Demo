@@ -882,6 +882,5 @@ script = ExtResource( 13 )
 position = Vector2( -27.5931, -0.671646 )
 rotation = -2.33524
 script = ExtResource( 13 )
-
 [connection signal="grounded_update" from="Player" to="Camera2D" method="_on_Player_grounded_update"]
 [connection signal="timeout" from="Player/Timer" to="Player" method="_on_Timer_timeout"]

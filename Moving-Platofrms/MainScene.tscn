@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Celeste-copy-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Celeste-copy.png" type="Texture" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://Snow.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Snow.gd" type="Script" id=13]
 [ext_resource path="res://Camera2D.gd" type="Script" id=14]
+[ext_resource path="res://MovingPlatform.tscn" type="PackedScene" id=15]
+[ext_resource path="res://PlayerEntity.tscn" type="PackedScene" id=16]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 104, 8, 0, 8, 0, 0, 104, 0 )
@@ -610,35 +612,6 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 322, 18, 93.8815, -37.435, -93.8815, 37.435, 168, 121, 0, 0, 0, 0, -119, 180 )
 }
 
-[sub_resource type="ConvexPolygonShape2D" id=26]
-points = PoolVector2Array( 0, 0, 24, 0, 24, 16, 0, 16 )
-
-[sub_resource type="TileSet" id=27]
-0/name = "Celeste-copy-Sheet.png 0"
-0/texture = ExtResource( 1 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 184, 56, 24, 16 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 26 )
-0/shape_one_way = false
-0/shape_one_way_margin = 1.0
-0/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 26 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-} ]
-0/z_index = 0
-
-[sub_resource type="RectangleShape2D" id=28]
-extents = Vector2( 23.55, 8.27502 )
-
 [node name="MainScene" type="Node2D"]
 
 [node name="Scene1" type="Sprite" parent="."]
@@ -666,23 +639,25 @@ texture = ExtResource( 7 )
 tile_set = SubResource( 16 )
 cell_size = Vector2( 8, 8 )
 format = 1
-tile_data = PoolIntArray( 27, 17, 0, 131099, 18, 0, 131103, 15, 0, 196634, 23, 0, 262175, 16, 0, 262176, 14, 0, 458763, 10, 0, 458766, 10, 0, 458769, 10, 0, 458772, 10, 0, 458775, 10, 0, 524298, 19, 0, 524300, 22, 0, 655360, 21, 0, 983053, 1, 0, 983066, 5, 0, 1048604, 20, 0, 1048608, 11, 0, 1114112, 0, 0, 1114128, 2, 0, 1114140, 6, 0, 1114145, 12, 0, 1114150, 13, 0, 1179671, 4, 0, 1179675, 9, 0, 1245199, 3, 0, 1245201, 7, 0, 1376278, 8, 0 )
+tile_data = PoolIntArray( 27, 17, 0, 131099, 18, 0, 131103, 15, 0, 196634, 23, 0, 262175, 16, 0, 262176, 14, 0, 524298, 19, 0, 524300, 22, 0, 655360, 21, 0, 983053, 1, 0, 983066, 5, 0, 1048604, 20, 0, 1048608, 11, 0, 1114112, 0, 0, 1114128, 2, 0, 1114140, 6, 0, 1114145, 12, 0, 1114150, 13, 0, 1179671, 4, 0, 1179675, 9, 0, 1245199, 3, 0, 1245201, 7, 0, 1376278, 8, 0 )
+
+[node name="MovingPlatform" parent="TileMap" instance=ExtResource( 15 )]
+position = Vector2( 56.5, 114 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
-position = Vector2( 32.375, 127.875 )
+position = Vector2( 17.5583, 103.141 )
 current = true
 zoom = Vector2( 0.25, 0.25 )
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
-smoothing_enabled = true
 drag_margin_top = 0.75
 editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource( 14 )
 
 [node name="Player" type="KinematicBody2D" parent="."]
-position = Vector2( 32.375, 127.875 )
+position = Vector2( 17.5583, 103.141 )
 z_index = 1
 collision_layer = 3
 collision_mask = 3
@@ -709,7 +684,7 @@ texture = ExtResource( 7 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2( 0, 5 )
+position = Vector2( 0.03125, 5.15625 )
 shape = SubResource( 17 )
 
 [node name="Timer" type="Timer" parent="Player"]
@@ -719,10 +694,12 @@ wait_time = 0.01
 remote_path = NodePath("../../Camera2D")
 
 [node name="Area2D" type="Area2D" parent="Player"]
+visible = false
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
+visible = false
 position = Vector2( 0.375, 6.75 )
 shape = SubResource( 18 )
 
@@ -920,51 +897,9 @@ script = ExtResource( 13 )
 visible = false
 color = Color( 0.196078, 0.196078, 0.196078, 1 )
 
-[node name="TileMap2" type="TileMap" parent="."]
-tile_set = SubResource( 27 )
-cell_size = Vector2( 8, 8 )
-collision_layer = 4
-collision_mask = 4
-format = 1
-tile_data = PoolIntArray( 720902, 0, 0, 720905, 0, 0, 786432, 0, 0, 917510, 0, 0, 917513, 0, 0 )
+[node name="PlayerEntity" parent="." instance=ExtResource( 16 )]
+position = Vector2( 51.225, 104 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2( 71.875, 119.875 )
-collision_layer = 2
-collision_mask = 0
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource( 28 )
-one_way_collision = true
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-visible = false
-position = Vector2( 57.875, 96.125 )
-collision_layer = 2
-collision_mask = 0
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-shape = SubResource( 28 )
-one_way_collision = true
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
-visible = false
-position = Vector2( 11.75, 104.375 )
-collision_layer = 2
-collision_mask = 0
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-shape = SubResource( 28 )
-one_way_collision = true
 [connection signal="grounded_update" from="Player" to="Camera2D" method="_on_Player_grounded_update"]
 [connection signal="timeout" from="Player/Timer" to="Player" method="_on_Timer_timeout"]
 [connection signal="body_exited" from="Player/Area2D" to="Player" method="_on_Area2D_body_exited"]

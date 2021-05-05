@@ -8,6 +8,11 @@
 
 config_version=4
 
+_global_script_classes=[  ]
+_global_script_class_icons={
+
+}
+
 [application]
 
 config/name="Camera2D-Advanced"
@@ -51,9 +56,9 @@ move_up={
 
 [rendering]
 
-quality/2d/use_transform_snap=true
 quality/filters/msaa=1
 environment/default_environment="res://default_env.tres"
+quality/2d/use_transform_snap=true
 
 [world]
 
