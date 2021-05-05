@@ -640,12 +640,9 @@ cell_size = Vector2( 8, 8 )
 format = 1
 tile_data = PoolIntArray( 27, 17, 0, 131099, 18, 0, 131103, 15, 0, 196634, 23, 0, 262175, 16, 0, 262176, 14, 0, 524298, 19, 0, 524300, 22, 0, 655360, 21, 0, 983053, 1, 0, 983066, 5, 0, 1048604, 20, 0, 1048608, 11, 0, 1114112, 0, 0, 1114128, 2, 0, 1114140, 6, 0, 1114145, 12, 0, 1114150, 13, 0, 1179671, 4, 0, 1179675, 9, 0, 1245199, 3, 0, 1245201, 7, 0, 1376278, 8, 0 )
 
-[node name="MovingPlatform" parent="TileMap" instance=ExtResource( 15 )]
-position = Vector2( 156.625, 108.375 )
-
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
-position = Vector2( 48.0583, 127.766 )
+position = Vector2( 11.1833, 127.641 )
 current = true
 zoom = Vector2( 0.25, 0.25 )
 drag_margin_h_enabled = true
@@ -656,7 +653,7 @@ editor_draw_drag_margin = true
 script = ExtResource( 14 )
 
 [node name="Player" type="KinematicBody2D" parent="."]
-position = Vector2( 48.0583, 127.766 )
+position = Vector2( 11.1833, 127.641 )
 z_index = 1
 collision_layer = 3
 collision_mask = 3
@@ -781,7 +778,6 @@ anims/Swing = SubResource( 24 )
 [node name="Snows" type="Node" parent="."]
 
 [node name="SnowBox" type="Node2D" parent="Snows"]
-visible = false
 position = Vector2( 125, 11 )
 
 [node name="Path2D" type="Path2D" parent="Snows/SnowBox"]
@@ -896,9 +892,17 @@ script = ExtResource( 13 )
 visible = false
 color = Color( 0.196078, 0.196078, 0.196078, 1 )
 
+[node name="MovingPlatform3" parent="." instance=ExtResource( 15 )]
+position = Vector2( 193.75, 108.125 )
+move_to = Vector2( 0, -30 )
+
 [node name="MovingPlatform" parent="." instance=ExtResource( 15 )]
-position = Vector2( 46.1, 99.275 )
-move_to = Vector2( 50, -50 )
+position = Vector2( 68.975, 108.275 )
+move_to = Vector2( 50, 0 )
+
+[node name="MovingPlatform2" parent="." instance=ExtResource( 15 )]
+position = Vector2( 126.625, 60.575 )
+move_to = Vector2( 50, -30 )
 
 [connection signal="grounded_update" from="Player" to="Camera2D" method="_on_Player_grounded_update"]
 [connection signal="timeout" from="Player/Timer" to="Player" method="_on_Timer_timeout"]

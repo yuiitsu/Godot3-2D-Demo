@@ -13,6 +13,7 @@ var is_grounded
 var is_jumping = false
 var Ghost = preload("res://Ghost.tscn")
 var floor_velectiry_x = 0
+var collision_platform = Node2D
 
 const SLOPE_STOP_THRESHOLD = 11.0
 var move_direction
@@ -55,7 +56,8 @@ func _physics_process(delta):
 	var stop_on_slope = true if get_floor_velocity().x == 0 else false
 		
 	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP, stop_on_slope)
-	#
+	#velocity = move_and_slide(velocity, Vector2.UP)
+	
 	
 	var was_grounded = is_grounded
 	is_grounded = is_on_floor()
@@ -71,7 +73,6 @@ func _physics_process(delta):
 	# jump inputs
 	if Input.is_action_just_pressed("jump") and !is_jumping and !dashing:
 		velocity.y -= jumpForceHigh
-		
 		if get_floor_velocity().x != 0:
 			floor_velectiry_x = get_floor_velocity().x
 		
