@@ -12,6 +12,7 @@ func _ready():
 
 func _physics_process(delta):
 	velocity.y += g * delta
-	velocity = move_and_slide_with_snap(velocity, Vector2.ZERO, Vector2.UP, true)
+	var snap = Vector2.DOWN * 16
+	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP, true)
 	
 	print(is_on_floor(), velocity.y)

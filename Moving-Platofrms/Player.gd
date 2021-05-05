@@ -12,6 +12,7 @@ var dashSpeed = 300
 var is_grounded
 var is_jumping = false
 var Ghost = preload("res://Ghost.tscn")
+var floor_velectiry_x = 0
 
 const SLOPE_STOP_THRESHOLD = 11.0
 var move_direction
@@ -42,10 +43,13 @@ func _physics_process(delta):
 	velocity.y += gravity * delta
 
 	#var snap = Vector2.DOWN * 10 if !is_grounded else Vector2.ZERO
-	var snap = Vector2.ZERO if is_jumping else Vector2.DOWN * 128
+	var snap = Vector2.ZERO if is_jumping else Vector2.DOWN * 16
 	
 	if move_direction == 0 && abs(velocity.x) < SLOPE_STOP_THRESHOLD:
 		velocity.x = 0
+		
+	if floor_velectiry_x != 0:
+		velocity.x += floor_velectiry_x
 		
 	#print("floor_velocity: ", get_floor_velocity().x)
 	var stop_on_slope = true if get_floor_velocity().x == 0 else false
@@ -55,9 +59,10 @@ func _physics_process(delta):
 	
 	var was_grounded = is_grounded
 	is_grounded = is_on_floor()
-	#print(is_grounded, velocity.y)
+	#print(is_grounded, velocity.y, get_floor_velocity())
 	if is_grounded:
 		is_jumping = false
+		floor_velectiry_x = 0
 	#if was_grounded == null || is_grounded != was_grounded:
 	#	emit_signal("grounded_update", is_grounded)
 	
@@ -66,6 +71,10 @@ func _physics_process(delta):
 	# jump inputs
 	if Input.is_action_just_pressed("jump") and !is_jumping and !dashing:
 		velocity.y -= jumpForceHigh
+		
+		if get_floor_velocity().x != 0:
+			floor_velectiry_x = get_floor_velocity().x
+		
 		is_jumping = true
 		
 	#if Input.is_action_just_released("jump") and !is_on_floor() and velocity.y < 0:

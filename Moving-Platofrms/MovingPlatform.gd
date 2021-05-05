@@ -13,7 +13,7 @@ onready var tween = $MoveTween
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#_init_tween()
+	_init_tween()
 	pass
 	
 	
@@ -25,6 +25,6 @@ func _init_tween():
 
 
 func _physics_process(delta):
-	#platform.position = platform.position.linear_interpolate(follow, 0.075)
+	platform.position = platform.position.linear_interpolate(follow, 0.075)
 	pass
 

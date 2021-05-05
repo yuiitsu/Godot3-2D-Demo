@@ -13,7 +13,7 @@ func _ready():
 
 func _physics_process(delta):
 	velocity.y += gravity * delta
-	print("PlayerEntity: ", velocity.y, is_on_floor())
+	#print("PlayerEntity: ", velocity.y, is_on_floor())
 	
 	#var snap = Vector2.ZERO if is_jumping else Vector2.DOWN * 128
-	velocity = move_and_slide_with_snap(velocity, Vector2.ZERO, Vector2.UP, true)
+	velocity = move_and_slide_with_snap(velocity, Vector2.DOWN * 16, Vector2.UP, true)

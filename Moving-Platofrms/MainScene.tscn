@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Celeste-copy-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Celeste-copy.png" type="Texture" id=2]
@@ -15,7 +15,6 @@
 [ext_resource path="res://Snow.gd" type="Script" id=13]
 [ext_resource path="res://Camera2D.gd" type="Script" id=14]
 [ext_resource path="res://MovingPlatform.tscn" type="PackedScene" id=15]
-[ext_resource path="res://PlayerEntity.tscn" type="PackedScene" id=16]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 104, 8, 0, 8, 0, 0, 104, 0 )
@@ -642,11 +641,11 @@ format = 1
 tile_data = PoolIntArray( 27, 17, 0, 131099, 18, 0, 131103, 15, 0, 196634, 23, 0, 262175, 16, 0, 262176, 14, 0, 524298, 19, 0, 524300, 22, 0, 655360, 21, 0, 983053, 1, 0, 983066, 5, 0, 1048604, 20, 0, 1048608, 11, 0, 1114112, 0, 0, 1114128, 2, 0, 1114140, 6, 0, 1114145, 12, 0, 1114150, 13, 0, 1179671, 4, 0, 1179675, 9, 0, 1245199, 3, 0, 1245201, 7, 0, 1376278, 8, 0 )
 
 [node name="MovingPlatform" parent="TileMap" instance=ExtResource( 15 )]
-position = Vector2( 56.5, 114 )
+position = Vector2( 156.625, 108.375 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
-position = Vector2( 17.5583, 103.141 )
+position = Vector2( 48.0583, 127.766 )
 current = true
 zoom = Vector2( 0.25, 0.25 )
 drag_margin_h_enabled = true
@@ -657,7 +656,7 @@ editor_draw_drag_margin = true
 script = ExtResource( 14 )
 
 [node name="Player" type="KinematicBody2D" parent="."]
-position = Vector2( 17.5583, 103.141 )
+position = Vector2( 48.0583, 127.766 )
 z_index = 1
 collision_layer = 3
 collision_mask = 3
@@ -897,8 +896,9 @@ script = ExtResource( 13 )
 visible = false
 color = Color( 0.196078, 0.196078, 0.196078, 1 )
 
-[node name="PlayerEntity" parent="." instance=ExtResource( 16 )]
-position = Vector2( 51.225, 104 )
+[node name="MovingPlatform" parent="." instance=ExtResource( 15 )]
+position = Vector2( 46.1, 99.275 )
+move_to = Vector2( 50, -50 )
 
 [connection signal="grounded_update" from="Player" to="Camera2D" method="_on_Player_grounded_update"]
 [connection signal="timeout" from="Player/Timer" to="Player" method="_on_Timer_timeout"]
