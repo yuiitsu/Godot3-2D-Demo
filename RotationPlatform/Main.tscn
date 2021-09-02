@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://RotationController.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Platforms.tscn" type="PackedScene" id=2]
+
+[node name="Main" type="Node2D"]
+
+[node name="RotationController" parent="." instance=ExtResource( 1 )]
+position = Vector2( 368, 307 )
+
+[node name="Platforms" parent="RotationController" instance=ExtResource( 2 )]
+position = Vector2( -27.7164, 11.4804 )
+
+[node name="Platforms2" parent="RotationController" instance=ExtResource( 2 )]
+position = Vector2( -19.4834, -22.8122 )
+
+[node name="Platforms3" parent="RotationController" instance=ExtResource( 2 )]
+position = Vector2( 15.675, -25.5792 )
+
+[node name="Platforms4" parent="RotationController" instance=ExtResource( 2 )]
+position = Vector2( 29.1711, 7.00344 )
+
+[node name="Platforms5" parent="RotationController" instance=ExtResource( 2 )]
+position = Vector2( 2.35369, 29.9075 )
+
+[node name="RotationController" parent="RotationController" instance=ExtResource( 1 )]
+position = Vector2( 235, 6 )
+radius = Vector2( 80, 80 )
+rotation_duration = 10.0
+
+[node name="Platforms" parent="RotationController/RotationController" instance=ExtResource( 2 )]
+position = Vector2( 11.2723, -79.2019 )
+
+[node name="Platforms2" parent="RotationController/RotationController" instance=ExtResource( 2 )]
+position = Vector2( 62.9547, 49.363 )
+
+[node name="Platforms3" parent="RotationController/RotationController" instance=ExtResource( 2 )]
+position = Vector2( -74.227, 29.8389 )
