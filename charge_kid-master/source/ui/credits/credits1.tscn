@@ -1,0 +1,159 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://ui/credits/credits.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/press-start-2p.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="DynamicFont" id=5]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="DynamicFont" id=8]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=9]
+font_data = ExtResource( 2 )
+
+[node name="SecondPage" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_top = 40
+custom_constants/margin_left = 64
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 64.0
+margin_top = 40.0
+margin_right = 1024.0
+margin_bottom = 576.0
+custom_constants/separation = 48
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 960.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "Charge Kid"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 88.0
+margin_right = 960.0
+margin_bottom = 503.0
+custom_constants/margin_left = 48
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+margin_left = 48.0
+margin_right = 960.0
+margin_bottom = 415.0
+alignment = 1
+
+[node name="Godot" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_right = 288.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "Godot Engine"
+
+[node name="Godot2" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 896.0
+margin_bottom = 158.0
+size_flags_horizontal = 0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "   Charge Kid was made with the Godot Engine,
+   an awesome free and open source engine.
+
+   The Godot logo was designed by Andréa Calabro,
+   distributed under the terms of the Creative Commons 
+   Attribution License version 3.0 (CC-BY 3.0) 
+   https://creativecommons.org/licenses/by/3.0/legalcode"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 162.0
+margin_right = 912.0
+margin_bottom = 210.0
+custom_styles/separator = SubResource( 4 )
+custom_constants/separation = 48
+
+[node name="UGD" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 214.0
+margin_right = 240.0
+margin_bottom = 238.0
+size_flags_horizontal = 0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "USPGameDev"
+
+[node name="UGD2" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 242.0
+margin_right = 832.0
+margin_bottom = 315.0
+size_flags_horizontal = 0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "   We were taught how to make games by USPGameDev,
+   an extension group on the University of São Paulo
+   that teaches and does game development.
+   Check them out!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator4" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 319.0
+margin_right = 912.0
+margin_bottom = 367.0
+custom_styles/separator = SubResource( 7 )
+custom_constants/separation = 48
+
+[node name="Repository" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 371.0
+margin_right = 624.0
+margin_bottom = 395.0
+size_flags_horizontal = 0
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "Charge Kid is open source!"
+
+[node name="Repository2" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 399.0
+margin_right = 912.0
+margin_bottom = 415.0
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "   https://gitlab.com/uspgamedev/charge_kid"
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true

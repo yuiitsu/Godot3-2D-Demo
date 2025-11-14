@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/lever.ogg-11141632d9485766793dd2f2650708a0.oggstr"
+
+[deps]
+
+source_file="res://assets/sound-effects/gate/lever.ogg"
+dest_files=[ "res://.import/lever.ogg-11141632d9485766793dd2f2650708a0.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

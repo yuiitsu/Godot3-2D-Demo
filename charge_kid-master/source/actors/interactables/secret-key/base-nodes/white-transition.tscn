@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/shader-effects/transition/transition.png" type="Texture" id=1]
+[ext_resource path="res://actors/interactables/secret-key/base-nodes/transition.gd" type="Script" id=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+
+uniform vec4 color : hint_color;
+uniform float reveal;
+
+
+void fragment() {
+	if (reveal <= texture(TEXTURE, UV).r ) {
+		COLOR = color;
+	}
+	else {
+		COLOR = vec4(0,0,0,0);
+	}
+}
+
+"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/color = Color( 0.956863, 0.956863, 0.894118, 1 )
+shader_param/reveal = 1.0
+
+[node name="Transition" type="Sprite"]
+material = SubResource( 2 )
+scale = Vector2( 2, 2 )
+z_index = 10
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true

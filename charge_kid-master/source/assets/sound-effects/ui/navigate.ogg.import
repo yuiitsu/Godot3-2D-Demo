@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/navigate.ogg-4a298fb3fb91c7b5529dcbdf68a722d6.oggstr"
+
+[deps]
+
+source_file="res://assets/sound-effects/ui/navigate.ogg"
+dest_files=[ "res://.import/navigate.ogg-4a298fb3fb91c7b5529dcbdf68a722d6.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

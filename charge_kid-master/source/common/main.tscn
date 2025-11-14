@@ -1,0 +1,305 @@
+[gd_scene load_steps=59 format=2]
+
+[ext_resource path="res://common/main.gd" type="Script" id=1]
+[ext_resource path="res://ui/starting-screen/start-menu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/pause/pause-menu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://actors/player/states/debug.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/settings/controls/controls-settings.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ui/settings/audio/audio-settings.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ui/level-select/level-select.tscn" type="PackedScene" id=7]
+[ext_resource path="res://common/menu-navigation.gd" type="Script" id=8]
+[ext_resource path="res://ui/settings/settings-menu.tscn" type="PackedScene" id=9]
+[ext_resource path="res://common/bgm-handler.gd" type="Script" id=10]
+[ext_resource path="res://assets/sound-effects/ui/navigate.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/sound-effects/ui/accept.ogg" type="AudioStream" id=12]
+[ext_resource path="res://common/save-file-handler.gd" type="Script" id=13]
+[ext_resource path="res://levels/level10.tscn" type="PackedScene" id=14]
+[ext_resource path="res://levels/level12.tscn" type="PackedScene" id=15]
+[ext_resource path="res://levels/level02.tscn" type="PackedScene" id=16]
+[ext_resource path="res://levels/level04.tscn" type="PackedScene" id=17]
+[ext_resource path="res://levels/level11.tscn" type="PackedScene" id=18]
+[ext_resource path="res://levels/level05.tscn" type="PackedScene" id=19]
+[ext_resource path="res://levels/level08.tscn" type="PackedScene" id=20]
+[ext_resource path="res://levels/level06.tscn" type="PackedScene" id=21]
+[ext_resource path="res://levels/level09.tscn" type="PackedScene" id=22]
+[ext_resource path="res://levels/level07.tscn" type="PackedScene" id=23]
+[ext_resource path="res://levels/level01.tscn" type="PackedScene" id=24]
+[ext_resource path="res://levels/level03.tscn" type="PackedScene" id=25]
+[ext_resource path="res://common/file-handler.gd" type="Script" id=26]
+[ext_resource path="res://assets/textures/godot-splash-screen.png" type="Texture" id=27]
+[ext_resource path="res://assets/textures/ugd-splash-screen.png" type="Texture" id=28]
+[ext_resource path="res://assets/shader-effects/transition/map.png" type="Texture" id=29]
+[ext_resource path="res://common/splash-screen.gd" type="Script" id=30]
+[ext_resource path="res://ui/settings/display/display-settings.tscn" type="PackedScene" id=31]
+[ext_resource path="res://common/speedrun-mode.gd" type="Script" id=32]
+[ext_resource path="res://ui/base-nodes/label-model.tscn" type="PackedScene" id=33]
+[ext_resource path="res://assets/sound-effects/speedrun/start.ogg" type="AudioStream" id=34]
+[ext_resource path="res://levels/level14.tscn" type="PackedScene" id=35]
+[ext_resource path="res://levels/level13.tscn" type="PackedScene" id=36]
+[ext_resource path="res://levels/level15.tscn" type="PackedScene" id=37]
+[ext_resource path="res://assets/fonts/press-start-2p.ttf" type="DynamicFontData" id=38]
+[ext_resource path="res://levels/level16.tscn" type="PackedScene" id=39]
+[ext_resource path="res://levels/secret-level.tscn" type="PackedScene" id=40]
+[ext_resource path="res://ui/credits/credits0.tscn" type="PackedScene" id=41]
+[ext_resource path="res://ui/speedrun-screens/speedrun-menu.tscn" type="PackedScene" id=42]
+[ext_resource path="res://ui/speedrun-screens/erase-times-menu.tscn" type="PackedScene" id=43]
+[ext_resource path="res://levels/level17.tscn" type="PackedScene" id=44]
+[ext_resource path="res://assets/sound-effects/speedrun/count_down.ogg" type="AudioStream" id=45]
+[ext_resource path="res://assets/music/music1.ogg" type="AudioStream" id=46]
+[ext_resource path="res://assets/music/hammock-10.ogg" type="AudioStream" id=47]
+[ext_resource path="res://assets/music/TheBigCrunchpart2-03.ogg" type="AudioStream" id=48]
+[ext_resource path="res://assets/music/Abandoned-09.ogg" type="AudioStream" id=49]
+[ext_resource path="res://assets/music/music8.ogg" type="AudioStream" id=50]
+[ext_resource path="res://assets/music/hammock-08.ogg" type="AudioStream" id=51]
+[ext_resource path="res://assets/music/Abandoned-20.ogg" type="AudioStream" id=52]
+[ext_resource path="res://assets/background/background.ogg" type="AudioStream" id=53]
+[ext_resource path="res://assets/music/Abandoned-01.ogg" type="AudioStream" id=54]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 38 )
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+uniform sampler2D map;
+uniform float reveal;
+
+
+void fragment() {
+	if (reveal <= texture(map, UV).r ) {
+		COLOR = vec4(0,0,0,0);
+	}
+	else {
+		COLOR = texture(TEXTURE, UV);
+	}
+}
+
+"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/reveal = 1.1
+shader_param/map = ExtResource( 29 )
+
+[sub_resource type="Animation" id=4]
+length = 8.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:transition_phase")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 1, 3.8, 4, 4.6, 5, 7.8, 8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.1, 1.1, 0.0, 0.0, 1.1, 1.1, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 4.1 ),
+"transitions": PoolRealArray( 1, 0.757858 ),
+"update": 1,
+"values": [ ExtResource( 28 ), ExtResource( 27 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 8.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "start"
+} ]
+}
+
+[node name="Main" type="Node" groups=["main"]]
+pause_mode = 2
+script = ExtResource( 1 )
+start_scene = ExtResource( 2 )
+pause_menu = ExtResource( 3 )
+debugger_layer = ExtResource( 4 )
+controls_menu = ExtResource( 5 )
+sound_menu = ExtResource( 6 )
+display_menu = ExtResource( 31 )
+level_select = ExtResource( 7 )
+settings_menu = ExtResource( 9 )
+speedrun_menu = ExtResource( 42 )
+erase_times_menu = ExtResource( 43 )
+credits = ExtResource( 41 )
+sound_config = "audio_settings"
+enable_save = true
+
+[node name="BackgroundAndMusicHandler" type="Node" parent="." groups=["sound_control"]]
+script = ExtResource( 10 )
+master_starting_volume = 0.8
+bgm_starting_volume = 0.8
+sfx_starting_volume = 0.8
+
+[node name="Background" type="AudioStreamPlayer" parent="BackgroundAndMusicHandler"]
+stream = ExtResource( 53 )
+volume_db = -3.0
+bus = "MUS"
+
+[node name="Timer" type="Timer" parent="BackgroundAndMusicHandler"]
+wait_time = 5.0
+autostart = true
+
+[node name="FadeInOut" type="Tween" parent="BackgroundAndMusicHandler"]
+
+[node name="BGM" type="Node" parent="BackgroundAndMusicHandler"]
+
+[node name="BGM1" type="AudioStreamPlayer" parent="BackgroundAndMusicHandler/BGM"]
+stream = ExtResource( 54 )
+volume_db = -80.0
+autoplay = true
+bus = "MUS"
+
+[node name="BGM2" type="AudioStreamPlayer" parent="BackgroundAndMusicHandler/BGM"]
+stream = ExtResource( 49 )
+volume_db = -80.0
+autoplay = true
+bus = "MUS"
+
+[node name="BGM3" type="AudioStreamPlayer" parent="BackgroundAndMusicHandler/BGM"]
+stream = ExtResource( 52 )
+volume_db = -80.0
+autoplay = true
+bus = "MUS"
+
+[node name="BGM4" type="AudioStreamPlayer" parent="BackgroundAndMusicHandler/BGM"]
+stream = ExtResource( 47 )
+volume_db = -80.0
+autoplay = true
+bus = "MUS"
+
+[node name="BGM5" type="AudioStreamPlayer" parent="BackgroundAndMusicHandler/BGM"]
+stream = ExtResource( 48 )
+volume_db = -80.0
+autoplay = true
+bus = "MUS"
+
+[node name="BGM6" type="AudioStreamPlayer" parent="BackgroundAndMusicHandler/BGM"]
+stream = ExtResource( 51 )
+volume_db = -80.0
+autoplay = true
+bus = "MUS"
+
+[node name="BGM7" type="AudioStreamPlayer" parent="BackgroundAndMusicHandler/BGM"]
+stream = ExtResource( 46 )
+volume_db = -80.0
+autoplay = true
+bus = "MUS"
+
+[node name="BGM8" type="AudioStreamPlayer" parent="BackgroundAndMusicHandler/BGM"]
+stream = ExtResource( 50 )
+volume_db = -80.0
+autoplay = true
+bus = "MUS"
+
+[node name="HudContainer" type="CanvasLayer" parent="."]
+
+[node name="Box" type="MarginContainer" parent="HudContainer" groups=["speedrun_timer"]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 16
+custom_constants/margin_bottom = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Box" type="VBoxContainer" parent="HudContainer/Box"]
+margin_right = 1008.0
+margin_bottom = 560.0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpeedrunTimer" parent="HudContainer/Box/Box" instance=ExtResource( 33 )]
+visible = false
+margin_top = 544.0
+margin_right = 1008.0
+margin_bottom = 560.0
+custom_fonts/font = SubResource( 1 )
+text = "0:00.00"
+align = 2
+
+[node name="PauseTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Scene" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="SpeedrunMode" type="Node" parent="."]
+script = ExtResource( 32 )
+
+[node name="Start" type="AudioStreamPlayer" parent="SpeedrunMode"]
+stream = ExtResource( 34 )
+volume_db = -6.0
+bus = "SFX"
+
+[node name="Countdown" type="AudioStreamPlayer" parent="SpeedrunMode"]
+stream = ExtResource( 45 )
+volume_db = -6.0
+bus = "SFX"
+
+[node name="MenuNavigation" type="Node" parent="."]
+script = ExtResource( 8 )
+
+[node name="MenuNavigate" type="AudioStreamPlayer" parent="MenuNavigation"]
+stream = ExtResource( 11 )
+volume_db = -9.0
+bus = "SFX"
+
+[node name="MenuAccept" type="AudioStreamPlayer" parent="MenuNavigation"]
+stream = ExtResource( 12 )
+volume_db = -9.0
+bus = "SFX"
+
+[node name="MenuNavTimer" type="Timer" parent="MenuNavigation"]
+wait_time = 0.4
+one_shot = true
+
+[node name="Timer" type="Timer" parent="MenuNavigation/MenuNavTimer"]
+wait_time = 0.01
+one_shot = true
+
+[node name="MenuAcceptTimer" type="Timer" parent="MenuNavigation"]
+wait_time = 0.05
+one_shot = true
+
+[node name="SaveFileHandler" type="Node" parent="."]
+script = ExtResource( 13 )
+levels = [ ExtResource( 24 ), ExtResource( 16 ), ExtResource( 25 ), ExtResource( 17 ), ExtResource( 19 ), ExtResource( 21 ), ExtResource( 23 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 14 ), ExtResource( 18 ), ExtResource( 15 ), ExtResource( 36 ), ExtResource( 35 ), ExtResource( 37 ), ExtResource( 39 ), ExtResource( 44 ) ]
+secret_levels = [ ExtResource( 40 ) ]
+
+[node name="FileHandler" type="Node" parent="."]
+script = ExtResource( 26 )
+
+[node name="SplashScreen" type="TextureRect" parent="."]
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -6.10352e-05
+expand = true
+script = ExtResource( 30 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SplashScreen"]
+anims/Transition = SubResource( 4 )
+
+[connection signal="timeout" from="MenuNavigation/MenuNavTimer/Timer" to="MenuNavigation" method="_on_Timer_timeout"]

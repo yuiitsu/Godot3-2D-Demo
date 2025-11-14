@@ -1,0 +1,148 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://actors/projectile/projectile.gd" type="Script" id=1]
+[ext_resource path="res://assets/particles/particle0.png" type="Texture" id=2]
+[ext_resource path="res://assets/particles/particle1.png" type="Texture" id=3]
+
+
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 4, 4 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 3, 3 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 1 ), 0.0, -1.0, 0, 1, Vector2( 1, 0 ), -1.0, 0.0, 1, 0 ]
+
+[sub_resource type="Animation" id=5]
+resource_name = "TeleportIn"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("ProjectileParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "TeleportOut"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("TeleportParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ProjectileParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ProjectileParticles:scale_amount")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.5 ]
+}
+
+[node name="Bullet" type="KinematicBody2D" groups=[
+"bullet",
+]]
+collision_layer = 0
+script = ExtResource( 1 )
+initial_state = "StandingState"
+speed = 250.0
+return_speed = 325.0
+return_acceleration = 1200.0
+fuel_speed = 450.0
+range_distance = 116.0
+gravity_accel = 400.0
+
+[node name="ProjectileParticles" type="CPUParticles2D" parent="."]
+amount = 12
+lifetime = 0.12
+local_coords = false
+texture = ExtResource( 2 )
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 10.0
+scale_amount = 0.5
+scale_amount_curve = SubResource( 1 )
+
+[node name="DespawnTimer" type="Timer" parent="."]
+
+[node name="HitBox" type="Area2D" parent="."]
+visible = false
+collision_layer = 5
+collision_mask = 37
+
+[node name="HitboxCollider" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource( 2 )
+
+[node name="PhysicalCollider" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 3 )
+
+[node name="FuelChargeParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 40
+lifetime = 0.3
+local_coords = false
+texture = ExtResource( 3 )
+gravity = Vector2( 0, 0 )
+scale_amount = 0.4
+scale_amount_curve = SubResource( 4 )
+color = Color( 0.956863, 0.956863, 0.894118, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/TeleportIn = SubResource( 5 )
+anims/TeleportOut = SubResource( 6 )
+
+[node name="TeleportParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 16
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+local_coords = false
+texture = ExtResource( 2 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 1.0
+scale_amount = 0.25
+scale_amount_random = 1.0
+[connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
+[connection signal="body_exited" from="HitBox" to="." method="_on_HitBox_body_exited"]

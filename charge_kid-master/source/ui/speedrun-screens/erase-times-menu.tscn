@@ -1,0 +1,236 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://ui/base-nodes/button-model.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/fonts/press-start-2p.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://ui/base-nodes/return-shortcut.tres" type="ShortCut" id=3]
+[ext_resource path="res://ui/base-nodes/menu-panel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/speedrun-screens/erase-times-list.gd" type="Script" id=5]
+[ext_resource path="res://ui/speedrun-screens/erase-times-menu.gd" type="Script" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[node name="SpeedrunTimeErase" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="MarginContainer" parent="CenterContainer"]
+margin_left = 368.0
+margin_top = 137.0
+margin_right = 656.0
+margin_bottom = 438.0
+
+[node name="MenuPanel" parent="CenterContainer/Panel" instance=ExtResource( 4 )]
+margin_right = 288.0
+margin_bottom = 301.0
+
+[node name="MenuContainer" type="MarginContainer" parent="CenterContainer/Panel"]
+margin_right = 288.0
+margin_bottom = 301.0
+custom_constants/margin_right = 12
+custom_constants/margin_top = 12
+custom_constants/margin_left = 12
+custom_constants/margin_bottom = 12
+
+[node name="Menu" type="VBoxContainer" parent="CenterContainer/Panel/MenuContainer"]
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 276.0
+margin_bottom = 289.0
+
+[node name="Label" type="Label" parent="CenterContainer/Panel/MenuContainer/Menu"]
+margin_right = 264.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "Choose a time
+to erase."
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/Panel/MenuContainer/Menu"]
+margin_top = 39.0
+margin_right = 264.0
+margin_bottom = 77.0
+custom_styles/separator = SubResource( 2 )
+custom_constants/separation = 38
+
+[node name="Times" type="HBoxContainer" parent="CenterContainer/Panel/MenuContainer/Menu"]
+margin_top = 81.0
+margin_right = 264.0
+margin_bottom = 239.0
+custom_constants/separation = 16
+alignment = 1
+script = ExtResource( 5 )
+
+[node name="AnyPercent" type="VBoxContainer" parent="CenterContainer/Panel/MenuContainer/Menu/Times"]
+margin_right = 124.0
+margin_bottom = 158.0
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/Panel/MenuContainer/Menu/Times/AnyPercent"]
+margin_right = 124.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "Any%"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/Panel/MenuContainer/Menu/Times/AnyPercent"]
+margin_top = 20.0
+margin_right = 124.0
+margin_bottom = 28.0
+custom_styles/separator = SubResource( 3 )
+custom_constants/separation = 8
+
+[node name="First" parent="CenterContainer/Panel/MenuContainer/Menu/Times/AnyPercent" instance=ExtResource( 1 )]
+margin_top = 32.0
+margin_right = 124.0
+margin_bottom = 54.0
+focus_neighbour_top = NodePath("../../../Return")
+focus_neighbour_bottom = NodePath("../Second")
+text = "0:00.00"
+
+[node name="Second" parent="CenterContainer/Panel/MenuContainer/Menu/Times/AnyPercent" instance=ExtResource( 1 )]
+margin_top = 58.0
+margin_right = 124.0
+margin_bottom = 80.0
+focus_neighbour_top = NodePath("../First")
+focus_neighbour_bottom = NodePath("../Third")
+text = "0:00.00"
+
+[node name="Third" parent="CenterContainer/Panel/MenuContainer/Menu/Times/AnyPercent" instance=ExtResource( 1 )]
+margin_top = 84.0
+margin_right = 124.0
+margin_bottom = 106.0
+focus_neighbour_top = NodePath("../Second")
+focus_neighbour_bottom = NodePath("../Fourth")
+text = "0:00.00"
+
+[node name="Fourth" parent="CenterContainer/Panel/MenuContainer/Menu/Times/AnyPercent" instance=ExtResource( 1 )]
+margin_top = 110.0
+margin_right = 124.0
+margin_bottom = 132.0
+focus_neighbour_top = NodePath("../Third")
+focus_neighbour_bottom = NodePath("../Fifth")
+text = "0:00.00"
+
+[node name="Fifth" parent="CenterContainer/Panel/MenuContainer/Menu/Times/AnyPercent" instance=ExtResource( 1 )]
+margin_top = 136.0
+margin_right = 124.0
+margin_bottom = 158.0
+focus_neighbour_top = NodePath("../Fourth")
+focus_neighbour_bottom = NodePath("../../../Return")
+text = "0:00.00"
+
+[node name="SecretPercent" type="VBoxContainer" parent="CenterContainer/Panel/MenuContainer/Menu/Times"]
+margin_left = 140.0
+margin_right = 264.0
+margin_bottom = 158.0
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/Panel/MenuContainer/Menu/Times/SecretPercent"]
+margin_right = 124.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "Secret%"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/Panel/MenuContainer/Menu/Times/SecretPercent"]
+margin_top = 20.0
+margin_right = 124.0
+margin_bottom = 28.0
+custom_styles/separator = SubResource( 3 )
+custom_constants/separation = 8
+
+[node name="First" parent="CenterContainer/Panel/MenuContainer/Menu/Times/SecretPercent" instance=ExtResource( 1 )]
+margin_top = 32.0
+margin_right = 124.0
+margin_bottom = 54.0
+focus_neighbour_top = NodePath("../../../Return")
+focus_neighbour_bottom = NodePath("../Second")
+text = "0:00.00"
+
+[node name="Second" parent="CenterContainer/Panel/MenuContainer/Menu/Times/SecretPercent" instance=ExtResource( 1 )]
+margin_top = 58.0
+margin_right = 124.0
+margin_bottom = 80.0
+focus_neighbour_top = NodePath("../First")
+focus_neighbour_bottom = NodePath("../Third")
+text = "0:00.00"
+
+[node name="Third" parent="CenterContainer/Panel/MenuContainer/Menu/Times/SecretPercent" instance=ExtResource( 1 )]
+margin_top = 84.0
+margin_right = 124.0
+margin_bottom = 106.0
+focus_neighbour_top = NodePath("../Second")
+focus_neighbour_bottom = NodePath("../Fourth")
+text = "0:00.00"
+
+[node name="Fourth" parent="CenterContainer/Panel/MenuContainer/Menu/Times/SecretPercent" instance=ExtResource( 1 )]
+margin_top = 110.0
+margin_right = 124.0
+margin_bottom = 132.0
+focus_neighbour_top = NodePath("../Third")
+focus_neighbour_bottom = NodePath("../Fifth")
+text = "0:00.00"
+
+[node name="Fifth" parent="CenterContainer/Panel/MenuContainer/Menu/Times/SecretPercent" instance=ExtResource( 1 )]
+margin_top = 136.0
+margin_right = 124.0
+margin_bottom = 158.0
+focus_neighbour_top = NodePath("../Fourth")
+focus_neighbour_bottom = NodePath("../../../Return")
+text = "0:00.00"
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/Panel/MenuContainer/Menu"]
+margin_top = 243.0
+margin_right = 264.0
+margin_bottom = 251.0
+custom_styles/separator = SubResource( 2 )
+custom_constants/separation = 8
+
+[node name="Return" parent="CenterContainer/Panel/MenuContainer/Menu" instance=ExtResource( 1 )]
+margin_left = 78.0
+margin_top = 255.0
+margin_right = 186.0
+margin_bottom = 277.0
+focus_neighbour_top = NodePath("../Times/AnyPercent/Fifth")
+focus_neighbour_bottom = NodePath("../Times/AnyPercent/First")
+shortcut = ExtResource( 3 )
+text = "Return"
+[connection signal="pressed" from="CenterContainer/Panel/MenuContainer/Menu/Times/AnyPercent/First" to="." method="on_any_first_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/MenuContainer/Menu/Times/AnyPercent/Second" to="." method="on_any_second_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/MenuContainer/Menu/Times/AnyPercent/Third" to="." method="on_any_third_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/MenuContainer/Menu/Times/AnyPercent/Fourth" to="." method="on_any_fourth_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/MenuContainer/Menu/Times/AnyPercent/Fifth" to="." method="on_any_fifth_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/MenuContainer/Menu/Times/SecretPercent/First" to="." method="on_secret_first_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/MenuContainer/Menu/Times/SecretPercent/Second" to="." method="on_secret_second_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/MenuContainer/Menu/Times/SecretPercent/Third" to="." method="on_secret_third_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/MenuContainer/Menu/Times/SecretPercent/Fourth" to="." method="on_secret_fourth_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/MenuContainer/Menu/Times/SecretPercent/Fifth" to="." method="on_secret_fifth_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/MenuContainer/Menu/Return" to="." method="_on_Return_pressed"]

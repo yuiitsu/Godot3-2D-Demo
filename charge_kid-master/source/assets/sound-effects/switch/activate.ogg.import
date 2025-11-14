@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/activate.ogg-705d55e5ced37074c95c653eab734d31.oggstr"
+
+[deps]
+
+source_file="res://assets/sound-effects/switch/activate.ogg"
+dest_files=[ "res://.import/activate.ogg-705d55e5ced37074c95c653eab734d31.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

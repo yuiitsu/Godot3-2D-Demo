@@ -1,0 +1,116 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://levels/base-nodes/base-level.gd" type="Script" id=1]
+[ext_resource path="res://assets/textures/tileset-blocks.png" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/press-start-2p.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://levels/base-nodes/messages/base-label-node.tscn" type="PackedScene" id=4]
+[ext_resource path="res://levels/base-nodes/camera.gd" type="Script" id=5]
+[ext_resource path="res://actors/player/player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/shader-effects/tear/tear.tscn" type="PackedScene" id=7]
+[ext_resource path="res://levels/base-nodes/screen-transition.gd" type="Script" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+outline_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="TileSet" id=3]
+0/name = "Blocks.png 0"
+0/texture = ExtResource( 2 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 48, 128, 16, 16 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 2 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 2 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+
+[node name="BaseLevel" type="Node2D" groups=[
+"level",
+]]
+pause_mode = 1
+script = ExtResource( 1 )
+player_scene = ExtResource( 6 )
+
+[node name="ScreenTransition" type="CanvasLayer" parent="."]
+pause_mode = 2
+script = ExtResource( 8 )
+active = true
+
+[node name="ColorRect" type="ColorRect" parent="ScreenTransition"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.113725, 0.129412, 0.176471, 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="ScreenTransition"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="ScreenTransition/CenterContainer"]
+visible = false
+margin_left = 512.0
+margin_top = 272.0
+margin_right = 512.0
+margin_bottom = 304.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+align = 1
+
+[node name="Timer" type="Timer" parent="ScreenTransition"]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="PityTimer" type="Timer" parent="ScreenTransition"]
+one_shot = true
+autostart = true
+
+[node name="LevelLimits" type="TileMap" parent="." groups=[
+"blocks",
+]]
+visible = false
+tile_set = SubResource( 3 )
+cell_size = Vector2( 16, 16 )
+format = 1
+
+[node name="MessageLabel" parent="." instance=ExtResource( 4 )]
+
+[node name="Timer" type="Timer" parent="MessageLabel"]
+one_shot = true
+
+[node name="PlayerCamera" type="Camera2D" parent="." groups=[
+"camera",
+]]
+current = true
+zoom = Vector2( 0.5, 0.5 )
+process_mode = 0
+limit_left = 0
+limit_top = 16
+limit_bottom = 304
+smoothing_enabled = true
+smoothing_speed = 3.0
+editor_draw_limits = true
+script = ExtResource( 5 )
+tear_shader = ExtResource( 7 )
+
+[node name="Autoscroller" type="Node2D" parent="."]
+visible = false
+position = Vector2( 256, 160 )
+[connection signal="timeout" from="ScreenTransition/Timer" to="ScreenTransition" method="_on_Timer_timeout"]
+[connection signal="timeout" from="MessageLabel/Timer" to="." method="_on_Timer_timeout"]

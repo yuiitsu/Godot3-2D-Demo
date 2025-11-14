@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bullet-pickup.ogg-dbc4f2494ce41d86f2ec338c88a7c8b9.oggstr"
+
+[deps]
+
+source_file="res://assets/sound-effects/bullet-pickup/bullet-pickup.ogg"
+dest_files=[ "res://.import/bullet-pickup.ogg-dbc4f2494ce41d86f2ec338c88a7c8b9.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

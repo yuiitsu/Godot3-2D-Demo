@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ui/base-nodes/button-model.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/base-nodes/menu-panel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/base-nodes/return-shortcut.tres" type="ShortCut" id=4]
+[ext_resource path="res://ui/level-select/level-select.gd" type="Script" id=5]
+[ext_resource path="res://ui/level-select/level-button.tscn" type="PackedScene" id=6]
+
+
+[node name="LevelSelectMenu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+level_button = ExtResource( 6 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+margin_left = 446.0
+margin_top = 257.0
+margin_right = 578.0
+margin_bottom = 319.0
+
+[node name="MenuPanel" parent="CenterContainer/MarginContainer" instance=ExtResource( 2 )]
+margin_right = 132.0
+margin_bottom = 62.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/MarginContainer"]
+margin_right = 132.0
+margin_bottom = 62.0
+custom_constants/margin_right = 12
+custom_constants/margin_top = 12
+custom_constants/margin_left = 12
+custom_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer/MarginContainer"]
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 120.0
+margin_bottom = 50.0
+custom_constants/separation = 16
+alignment = 1
+
+[node name="LevelList" type="VBoxContainer" parent="CenterContainer/MarginContainer/MarginContainer/VBoxContainer"]
+margin_right = 108.0
+alignment = 1
+
+[node name="Return" parent="CenterContainer/MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 16.0
+margin_right = 108.0
+margin_bottom = 38.0
+shortcut = ExtResource( 4 )
+text = "Return"
+[connection signal="pressed" from="CenterContainer/MarginContainer/MarginContainer/VBoxContainer/Return" to="." method="_on_Return_pressed"]

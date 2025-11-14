@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/particles/one-shot-particles.gd" type="Script" id=1]
+
+
+
+
+[node name="StepSparksParticles" type="CPUParticles2D"]
+rotation = -1.5708
+emitting = false
+amount = 1
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+local_coords = false
+gravity = Vector2( 0, 200 )
+initial_velocity = 45.0
+color = Color( 1, 0.309804, 0.470588, 1 )
+script = ExtResource( 1 )

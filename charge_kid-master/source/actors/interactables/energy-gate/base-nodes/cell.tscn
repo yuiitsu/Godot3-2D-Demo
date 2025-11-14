@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://actors/interactables/energy-gate/base-nodes/cell.gd" type="Script" id=1]
+[ext_resource path="res://actors/interactables/energy-gate/base-nodes/hit-particles.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/textures/robot.v1.png" type="Texture" id=3]
+[ext_resource path="res://actors/interactables/energy-gate/base-nodes/sprite.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 8 )
+
+[node name="EnergyGateCell" type="Node2D"]
+z_index = -1
+script = ExtResource( 1 )
+hit_particles = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( -1, 0 )
+texture = ExtResource( 3 )
+hframes = 3
+frame = 2
+region_enabled = true
+region_rect = Rect2( 0, 128, 48, 16 )
+script = ExtResource( 4 )
+
+[node name="Timer" type="Timer" parent="Sprite"]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[node name="CheckpointBlocker" type="Area2D" parent="."]
+visible = false
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointBlocker"]
+shape = SubResource( 1 )
+[connection signal="timeout" from="Sprite/Timer" to="Sprite" method="_on_Timer_timeout"]

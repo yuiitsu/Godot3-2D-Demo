@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://levels/base-nodes/tilemaps/blocks.tscn" type="PackedScene" id=1]
+[ext_resource path="res://levels/base-nodes/tilemaps/platforms.tscn" type="PackedScene" id=2]
+[ext_resource path="res://actors/interactables/teleporter/teleporter.tscn" type="PackedScene" id=3]
+
+[node name="Segment" type="Node2D"]
+
+[node name="Blocks" parent="." instance=ExtResource( 1 )]
+position = Vector2( -16, 0 )
+
+[node name="Blocks1" parent="Blocks" index="0"]
+tile_data = PoolIntArray( 8, 52, 0, 9, 52, 1, 10, 52, 2, 65544, 52, 65536, 65545, 52, 65537, 65546, 52, 65538, 131080, 52, 65536, 131081, 52, 65537, 131082, 52, 65538, 196616, 52, 131072, 196617, 52, 131073, 196618, 52, 131074, 524297, 23, 0, 589833, 23, 131072, 655369, 49, 0, 720905, 49, 0, 786441, 49, 0, 851977, 50, 0 )
+
+[node name="Blocks2" parent="Blocks" index="1"]
+tile_data = PoolIntArray( 524297, 16, 0 )
+
+[node name="Blocks2" parent="." instance=ExtResource( 1 )]
+position = Vector2( -8, 0 )
+
+[node name="Blocks1" parent="Blocks2" index="0"]
+tile_data = PoolIntArray( 262152, 4, 0, 262153, 4, 2, 327683, 49, 0, 327688, 4, 65536, 327689, 4, 65538, 393219, 49, 0, 393224, 4, 65536, 393225, 4, 65538, 393229, 52, 0, 393230, 52, 1, 393231, 52, 2, 458755, 49, 0, 458760, 4, 131072, 458761, 4, 131074, 458765, 52, 131072, 458766, 52, 131073, 458767, 52, 131074, 524291, 49, 0, 524301, 22, 0, 524303, 22, 0, 589827, 49, 0, 589837, 22, 0, 589839, 22, 0, 655363, 49, 0, 655373, 22, 0, 655375, 22, 0, 720899, 49, 0, 720909, 22, 0, 720911, 22, 0, 786435, 49, 0, 786445, 22, 0, 786447, 22, 0, 851971, 49, 0, 851981, 22, 0, 851983, 22, 0, 917507, 49, 0, 917517, 22, 0, 917519, 22, 0, 983043, 49, 0, 983053, 22, 0, 983055, 22, 0, 1048579, 49, 0, 1048589, 22, 0, 1048591, 22, 0, 1114115, 49, 0, 1114125, 22, 0, 1114127, 22, 0, 1179661, 22, 0, 1179663, 22, 0 )
+
+[node name="BlockProps" parent="Blocks2" index="3"]
+tile_data = PoolIntArray( 393229, 6, 0, 393230, 7, 0, 393231, 8, 0 )
+
+[node name="Platforms" parent="." instance=ExtResource( 2 )]
+position = Vector2( 8, 0 )
+
+[node name="Platforms" parent="Platforms" index="1"]
+tile_data = PoolIntArray( 262145, 9, 0, 262147, 10, 0, 524298, 17, 0, 589833, 6, 0, 589834, 7, 0, 589835, 11, 0 )
+
+[node name="Teleporter" parent="." instance=ExtResource( 3 )]
+position = Vector2( 48, 72 )
+
+[editable path="Blocks"]
+
+[editable path="Blocks2"]
+
+[editable path="Platforms"]

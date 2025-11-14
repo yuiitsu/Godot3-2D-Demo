@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://actors/interactables/energy-gate/base-nodes/end-sparks.gd" type="Script" id=1]
+
+
+
+
+
+
+
+
+[node name="EndSparks" type="CPUParticles2D"]
+emitting = false
+amount = 16
+lifetime = 0.2
+local_coords = false
+spread = 180.0
+gravity = Vector2( 0, 200 )
+initial_velocity = 50.0
+color = Color( 0.956863, 0.956863, 0.894118, 1 )
+script = ExtResource( 1 )

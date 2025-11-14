@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://common/achievements_and_stats_observer.gd" type="Script" id=1]
+
+[node name="AchievementsAndStatsObserver" type="Node"]
+script = ExtResource( 1 )

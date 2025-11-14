@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/particles/one-shot-particles.gd" type="Script" id=1]
+
+[node name="ShootParticles" type="CPUParticles2D"]
+scale = Vector2( -1, 1 )
+emitting = false
+amount = 16
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.5
+local_coords = false
+spread = 30.0
+gravity = Vector2( 0, 60 )
+initial_velocity = 60.0
+initial_velocity_random = 1.0
+scale_amount = 1.5
+color = Color( 1, 0.309804, 0.470588, 1 )
+script = ExtResource( 1 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 12
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.5
+local_coords = false
+spread = 15.0
+gravity = Vector2( 0, 20 )
+initial_velocity = 120.0
+initial_velocity_random = 0.5
+color = Color( 1, 0.309804, 0.470588, 1 )
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 12
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.5
+local_coords = false
+spread = 15.0
+gravity = Vector2( 0, 40 )
+initial_velocity = 90.0
+initial_velocity_random = 0.5
+color = Color( 1, 0.309804, 0.470588, 1 )

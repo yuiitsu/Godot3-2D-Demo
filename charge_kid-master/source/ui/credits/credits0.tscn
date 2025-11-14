@@ -1,0 +1,209 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://ui/credits/credits.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/press-start-2p.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://ui/credits/credits1.tscn" type="PackedScene" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="DynamicFont" id=5]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=8]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=10]
+font_data = ExtResource( 2 )
+
+[node name="FirstPage" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_top = 32
+custom_constants/margin_left = 64
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+second_page = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 64.0
+margin_top = 32.0
+margin_right = 1024.0
+margin_bottom = 576.0
+custom_constants/separation = 48
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 960.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "Charge Kid"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 88.0
+margin_right = 960.0
+margin_bottom = 503.0
+custom_constants/margin_left = 48
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+margin_left = 48.0
+margin_right = 960.0
+margin_bottom = 415.0
+alignment = 1
+
+[node name="Ayrton" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_right = 624.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "Ayrton Makoto Euzebio Sato"
+
+[node name="Ayrton2" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 224.0
+margin_bottom = 44.0
+size_flags_horizontal = 0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "   Programming"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 48.0
+margin_right = 912.0
+margin_bottom = 72.0
+custom_styles/separator = SubResource( 4 )
+custom_constants/separation = 24
+
+[node name="Rafael" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 76.0
+margin_right = 528.0
+margin_bottom = 100.0
+size_flags_horizontal = 0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "Rafael de Lima Bordoni"
+
+[node name="Rafael2" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 104.0
+margin_right = 688.0
+margin_bottom = 120.0
+size_flags_horizontal = 0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "   Game design, programming, animation, art"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 124.0
+margin_right = 912.0
+margin_bottom = 148.0
+custom_styles/separator = SubResource( 4 )
+custom_constants/separation = 24
+
+[node name="Vicente" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 152.0
+margin_right = 672.0
+margin_bottom = 176.0
+size_flags_horizontal = 0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "Vicente Reis de Souza Farias"
+
+[node name="Vicente2" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 180.0
+margin_right = 368.0
+margin_bottom = 196.0
+size_flags_horizontal = 0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "   Sound effects, music"
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 200.0
+margin_right = 912.0
+margin_bottom = 248.0
+custom_styles/separator = SubResource( 4 )
+custom_constants/separation = 48
+
+[node name="0x72" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 252.0
+margin_right = 504.0
+margin_bottom = 276.0
+size_flags_horizontal = 0
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "https://0x72.itch.io/"
+
+[node name="0x722" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 280.0
+margin_right = 912.0
+margin_bottom = 315.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "   industrial.v2.png and robot.v1.png by 0x72
+   are licensed under CC-0."
+
+[node name="HSeparator4" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 319.0
+margin_right = 912.0
+margin_bottom = 367.0
+custom_styles/separator = SubResource( 4 )
+custom_constants/separation = 48
+
+[node name="SteviaSphere" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 371.0
+margin_right = 816.0
+margin_bottom = 395.0
+size_flags_horizontal = 0
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "https://steviasphere.bandcamp.com/"
+
+[node name="SteviaSphere2" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 399.0
+margin_right = 912.0
+margin_bottom = 415.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "   Music by Stevia Sphere licensed under CC BY 3.0."
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true

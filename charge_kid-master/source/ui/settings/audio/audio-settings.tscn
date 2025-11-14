@@ -1,0 +1,217 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://ui/settings/audio/audio-settings.gd" type="Script" id=1]
+[ext_resource path="res://ui/base-nodes/menu-panel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/fonts/press-start-2p.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://ui/base-nodes/master-slider.gd" type="Script" id=4]
+[ext_resource path="res://ui/base-nodes/slider.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ui/settings/audio/bgm-slider.gd" type="Script" id=6]
+[ext_resource path="res://ui/base-nodes/button-model.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ui/base-nodes/return-shortcut.tres" type="ShortCut" id=8]
+[ext_resource path="res://ui/settings/audio/sfx-slider.gd" type="Script" id=9]
+[ext_resource path="res://ui/settings/audio/default.gd" type="Script" id=10]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+resource_local_to_scene = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[node name="SoundConfigMenu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+return_shortcut = ExtResource( 8 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+margin_left = 308.0
+margin_top = 189.0
+margin_right = 716.0
+margin_bottom = 387.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuPanel" parent="CenterContainer/MarginContainer" instance=ExtResource( 2 )]
+margin_right = 408.0
+margin_bottom = 198.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/MarginContainer"]
+margin_right = 408.0
+margin_bottom = 198.0
+custom_constants/margin_right = 12
+custom_constants/margin_top = 12
+custom_constants/margin_left = 12
+custom_constants/margin_bottom = 12
+
+[node name="Options" type="VBoxContainer" parent="CenterContainer/MarginContainer/MarginContainer"]
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 396.0
+margin_bottom = 186.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_constants/separation = 38
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/MarginContainer/Options"]
+margin_right = 384.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "Audio Settings"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="VBoxContainer" parent="CenterContainer/MarginContainer/MarginContainer/Options"]
+margin_top = 54.0
+margin_right = 384.0
+margin_bottom = 174.0
+
+[node name="Master" parent="CenterContainer/MarginContainer/MarginContainer/Options/Buttons" instance=ExtResource( 5 )]
+margin_left = 0.0
+margin_right = 384.0
+margin_bottom = 16.0
+focus_neighbour_top = NodePath("../Return")
+focus_neighbour_bottom = NodePath("../BGM")
+script = ExtResource( 4 )
+
+[node name="Label" parent="CenterContainer/MarginContainer/MarginContainer/Options/Buttons/Master" index="0"]
+margin_top = 0.0
+margin_right = 224.0
+margin_bottom = 16.0
+text = "Master:"
+
+[node name="SliderContainer" parent="CenterContainer/MarginContainer/MarginContainer/Options/Buttons/Master" index="1"]
+margin_left = 256.0
+margin_right = 384.0
+margin_bottom = 16.0
+
+[node name="HSlider" parent="CenterContainer/MarginContainer/MarginContainer/Options/Buttons/Master/SliderContainer" index="0"]
+margin_bottom = 16.0
+
+[node name="SliderSize" parent="CenterContainer/MarginContainer/MarginContainer/Options/Buttons/Master/SliderContainer" index="1"]
+margin_top = 0.0
+margin_bottom = 16.0
+
+[node name="BGM" parent="CenterContainer/MarginContainer/MarginContainer/Options/Buttons" instance=ExtResource( 5 )]
+margin_left = 0.0
+margin_top = 20.0
+margin_right = 384.0
+margin_bottom = 36.0
+focus_neighbour_top = NodePath("../Master")
+focus_neighbour_bottom = NodePath("../SFX")
+script = ExtResource( 6 )
+
+[node name="Label" parent="CenterContainer/MarginContainer/MarginContainer/Options/Buttons/BGM" index="0"]
+margin_top = 0.0
+margin_right = 224.0
+margin_bottom = 16.0
+text = "Music:"
+
+[node name="SliderContainer" parent="CenterContainer/MarginContainer/MarginContainer/Options/Buttons/BGM" index="1"]
+margin_left = 256.0
+margin_right = 384.0
+margin_bottom = 16.0
+
+[node name="HSlider" parent="CenterContainer/MarginContainer/MarginContainer/Options/Buttons/BGM/SliderContainer" index="0"]
+margin_bottom = 16.0
+
+[node name="SliderSize" parent="CenterContainer/MarginContainer/MarginContainer/Options/Buttons/BGM/SliderContainer" index="1"]
+margin_top = 0.0
+margin_bottom = 16.0
+
+[node name="SFX" parent="CenterContainer/MarginContainer/MarginContainer/Options/Buttons" instance=ExtResource( 5 )]
+margin_left = 0.0
+margin_top = 40.0
+margin_right = 384.0
+margin_bottom = 56.0
+focus_neighbour_top = NodePath("../BGM")
+focus_neighbour_bottom = NodePath("../Default/Default")
+script = ExtResource( 9 )
+
+[node name="Label" parent="CenterContainer/MarginContainer/MarginContainer/Options/Buttons/SFX" index="0"]
+margin_top = 0.0
+margin_right = 224.0
+margin_bottom = 16.0
+text = "Sound Effects:"
+
+[node name="SliderContainer" parent="CenterContainer/MarginContainer/MarginContainer/Options/Buttons/SFX" index="1"]
+margin_left = 256.0
+margin_right = 384.0
+margin_bottom = 16.0
+
+[node name="HSlider" parent="CenterContainer/MarginContainer/MarginContainer/Options/Buttons/SFX/SliderContainer" index="0"]
+margin_bottom = 16.0
+
+[node name="SliderSize" parent="CenterContainer/MarginContainer/MarginContainer/Options/Buttons/SFX/SliderContainer" index="1"]
+margin_top = 0.0
+margin_bottom = 16.0
+
+[node name="Default" type="HBoxContainer" parent="CenterContainer/MarginContainer/MarginContainer/Options/Buttons"]
+margin_top = 60.0
+margin_right = 384.0
+margin_bottom = 82.0
+size_flags_horizontal = 7
+script = ExtResource( 10 )
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/MarginContainer/Options/Buttons/Default"]
+margin_top = 3.0
+margin_right = 256.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "Restore Defaults"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Default" parent="CenterContainer/MarginContainer/MarginContainer/Options/Buttons/Default" instance=ExtResource( 7 )]
+margin_left = 260.0
+margin_right = 384.0
+margin_bottom = 22.0
+focus_neighbour_top = NodePath("../../SFX")
+focus_neighbour_bottom = NodePath("../../Return")
+size_flags_horizontal = 3
+align = 0
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/MarginContainer/MarginContainer/Options/Buttons"]
+margin_top = 86.0
+margin_right = 384.0
+margin_bottom = 94.0
+custom_styles/separator = SubResource( 3 )
+custom_constants/separation = 8
+
+[node name="Return" parent="CenterContainer/MarginContainer/MarginContainer/Options/Buttons" instance=ExtResource( 7 )]
+margin_left = 138.0
+margin_top = 98.0
+margin_right = 246.0
+margin_bottom = 120.0
+focus_neighbour_top = NodePath("../Default/Default")
+focus_neighbour_bottom = NodePath("../Master")
+shortcut = ExtResource( 8 )
+text = "Return"
+[connection signal="pressed" from="CenterContainer/MarginContainer/MarginContainer/Options/Buttons/Default/Default" to="." method="_on_Default_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/MarginContainer/Options/Buttons/Return" to="." method="_on_Return_pressed"]
+
+[editable path="CenterContainer/MarginContainer/MarginContainer/Options/Buttons/Master"]
+
+[editable path="CenterContainer/MarginContainer/MarginContainer/Options/Buttons/BGM"]
+
+[editable path="CenterContainer/MarginContainer/MarginContainer/Options/Buttons/SFX"]

@@ -1,0 +1,108 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/textures/industrial.v2.png" type="Texture" id=1]
+[ext_resource path="res://actors/interactables/charge-tank/hit-particles.tscn" type="PackedScene" id=2]
+[ext_resource path="res://actors/interactables/charge-tank/auxiliar-script.gd" type="Script" id=3]
+[ext_resource path="res://assets/sound-effects/charge/charge-tank.ogg" type="AudioStream" id=4]
+[ext_resource path="res://actors/interactables/charge-tank/charge-tank.gd" type="Script" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Empty"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 5, 4, 3, 2, 1, 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Fill"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 7, 0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 4, 7 )
+
+[sub_resource type="RectangleShape2D" id=5]
+
+[node name="FuelTank" type="Sprite"]
+z_index = -4
+texture = ExtResource( 1 )
+hframes = 8
+frame = 6
+region_enabled = true
+region_rect = Rect2( 336, 144, 128, 16 )
+script = ExtResource( 5 )
+state = "Full"
+refill_time = 2.0
+particles = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Empty = SubResource( 1 )
+anims/Fill = SubResource( 2 )
+anims/Hit = SubResource( 3 )
+
+[node name="RefillTime" type="Timer" parent="."]
+one_shot = true
+
+[node name="BulletHitbox" type="StaticBody2D" parent="." groups=[
+"fuel",
+"interactable",
+]]
+visible = false
+collision_layer = 4
+collision_mask = 4
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletHitbox"]
+position = Vector2( 0, 1 )
+shape = SubResource( 4 )
+
+[node name="PlayerHitbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox"]
+shape = SubResource( 5 )
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -9.0
+bus = "SFX"
+[connection signal="timeout" from="RefillTime" to="." method="_on_RefillTime_timeout"]
+[connection signal="body_entered" from="PlayerHitbox" to="." method="_on_PlayerHitbox_body_entered"]
+[connection signal="body_exited" from="PlayerHitbox" to="." method="_on_PlayerHitbox_body_exited"]

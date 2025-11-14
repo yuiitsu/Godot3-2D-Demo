@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/start.ogg-c79dc3c3f44e5a1a578df3bb6c68fa18.oggstr"
+
+[deps]
+
+source_file="res://assets/sound-effects/speedrun/start.ogg"
+dest_files=[ "res://.import/start.ogg-c79dc3c3f44e5a1a578df3bb6c68fa18.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,190 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/fonts/press-start-2p.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://ui/speedrun-screens/finish.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+resource_local_to_scene = true
+size = 40
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+resource_local_to_scene = true
+size = 64
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+resource_local_to_scene = true
+size = 24
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+resource_local_to_scene = true
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+resource_local_to_scene = true
+size = 24
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="DynamicFont" id=7]
+resource_local_to_scene = true
+size = 24
+font_data = ExtResource( 1 )
+
+[node name="SpeedrunFinish" type="CenterContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Box" type="VBoxContainer" parent="."]
+margin_left = 260.0
+margin_top = 56.0
+margin_right = 764.0
+margin_bottom = 520.0
+custom_constants/separation = 96
+alignment = 1
+
+[node name="RunTime" type="VBoxContainer" parent="Box"]
+margin_right = 504.0
+margin_bottom = 136.0
+custom_constants/separation = 32
+
+[node name="Label" type="Label" parent="Box/RunTime"]
+margin_right = 504.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "Time!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Time" type="Label" parent="Box/RunTime"]
+margin_top = 72.0
+margin_right = 504.0
+margin_bottom = 136.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "0:00.00"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PastTimes" type="VBoxContainer" parent="Box"]
+margin_top = 232.0
+margin_right = 504.0
+margin_bottom = 464.0
+custom_constants/separation = 32
+
+[node name="BestTime" type="HBoxContainer" parent="Box/PastTimes"]
+margin_right = 504.0
+margin_bottom = 32.0
+custom_constants/separation = 40
+
+[node name="Label" type="Label" parent="Box/PastTimes/BestTime"]
+margin_top = 4.0
+margin_right = 240.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "Best Time:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Time" type="Label" parent="Box/PastTimes/BestTime"]
+margin_left = 280.0
+margin_right = 504.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "0:00.00"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OtherTimes" type="VBoxContainer" parent="Box/PastTimes"]
+margin_top = 64.0
+margin_right = 504.0
+margin_bottom = 232.0
+custom_constants/separation = 8
+
+[node name="Label" type="Label" parent="Box/PastTimes/OtherTimes"]
+margin_right = 504.0
+margin_bottom = 24.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "Second Best Times:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="Box/PastTimes/OtherTimes"]
+margin_top = 32.0
+margin_right = 504.0
+margin_bottom = 40.0
+custom_styles/separator = SubResource( 6 )
+custom_constants/separation = 8
+
+[node name="Second" type="Label" parent="Box/PastTimes/OtherTimes"]
+margin_top = 48.0
+margin_right = 504.0
+margin_bottom = 72.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "0:00.00"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Third" type="Label" parent="Box/PastTimes/OtherTimes"]
+margin_top = 80.0
+margin_right = 504.0
+margin_bottom = 104.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "0:00.00"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fourth" type="Label" parent="Box/PastTimes/OtherTimes"]
+margin_top = 112.0
+margin_right = 504.0
+margin_bottom = 136.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "0:00.00"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fifth" type="Label" parent="Box/PastTimes/OtherTimes"]
+margin_top = 144.0
+margin_right = 504.0
+margin_bottom = 168.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+text = "0:00.00"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true

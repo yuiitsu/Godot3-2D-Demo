@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/hammock-10.ogg-86786d84bd72f0dbd34c1c6f14115a65.oggstr"
+
+[deps]
+
+source_file="res://assets/music/hammock-10.ogg"
+dest_files=[ "res://.import/hammock-10.ogg-86786d84bd72f0dbd34c1c6f14115a65.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/TheBigCrunchpart2-03.ogg-e4f9f97cd93b2bd76413ad32fef5d6d3.oggstr"
+
+[deps]
+
+source_file="res://assets/music/TheBigCrunchpart2-03.ogg"
+dest_files=[ "res://.import/TheBigCrunchpart2-03.ogg-e4f9f97cd93b2bd76413ad32fef5d6d3.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

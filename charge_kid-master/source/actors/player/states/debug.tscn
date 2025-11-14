@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://actors/player/states/debug.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/press-start-2p.ttf" type="DynamicFontData" id=2]
+
+
+
+
+
+
+
+
+
+
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[node name="DebuggingStateMachine" type="MarginContainer"]
+margin_right = 194.0
+margin_bottom = 268.0
+script = ExtResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 194.0
+margin_bottom = 268.0
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+margin_right = 194.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+align = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_top = 20.0
+margin_right = 194.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 1 )
+align = 1

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/boost2.ogg-6116800291d73f69de8c352f5f721e50.oggstr"
+
+[deps]
+
+source_file="res://assets/sound-effects/boost/boost2.ogg"
+dest_files=[ "res://.import/boost2.ogg-6116800291d73f69de8c352f5f721e50.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

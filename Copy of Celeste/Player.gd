@@ -46,16 +46,17 @@ func _physics_process(delta):
 		velocity.y -= jumpForceHigh
 		#print(velocity.y)
 		
-	if Input.is_action_just_released("jump") and !is_on_floor() :
+	if Input.is_action_just_released("jump") and velocity.y < 0 :
 		# velocity.y = -0
-		#print(velocity.y)
-		if jumpForceHigh - abs(velocity.y) < jumpForceLow:
-			var y = jumpForceLow - (jumpForceHigh - abs(velocity.y))
+		velocity.y /= 3
+		print(velocity.y)
+		#if jumpForceHigh - abs(velocity.y) < jumpForceLow:
+		#	var y = jumpForceLow - (jumpForceHigh - abs(velocity.y))
 			#print('velocity.y: ' + str(velocity.y) + 'dis: ' + str(y))
 			# velocity.y += abs(velocity.y) - y
-			if y > 50:
+		#	if y > 50:
 				#velocity.y = 0
-				velocity.y += jumpForceHigh - jumpForceLow
+		#		velocity.y += jumpForceHigh - jumpForceLow
 				#velocity.y -= y
 			#print('velocity.y: ' + str(velocity.y))
 			#velocity.y += 

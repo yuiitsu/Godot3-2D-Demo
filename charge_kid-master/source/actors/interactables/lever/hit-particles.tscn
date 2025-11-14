@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/particles/one-shot-particles.gd" type="Script" id=1]
+
+[node name="LeverParticles" type="CPUParticles2D"]
+emitting = false
+amount = 32
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.5
+local_coords = false
+spread = 180.0
+gravity = Vector2( 0, 100 )
+initial_velocity = 75.0
+initial_velocity_random = 1.0
+color = Color( 0.956863, 0.956863, 0.894118, 1 )
+script = ExtResource( 1 )

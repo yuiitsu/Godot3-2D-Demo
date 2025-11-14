@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://Celeste-copy-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Celeste-copy.png" type="Texture" id=2]
@@ -738,7 +738,7 @@ __meta__ = {
 [node name="Entiy" type="Sprite" parent="Player"]
 texture = ExtResource( 3 )
 hframes = 15
-frame = 2
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Entiy"]
 autoplay = "Idle"
@@ -836,7 +836,6 @@ anims/Swing = SubResource( 23 )
 [node name="Snows" type="Node" parent="."]
 
 [node name="SnowBox" type="Node2D" parent="Snows"]
-visible = false
 position = Vector2( 125, 11 )
 
 [node name="Path2D" type="Path2D" parent="Snows/SnowBox"]
@@ -950,4 +949,5 @@ script = ExtResource( 13 )
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
 color = Color( 0.196078, 0.196078, 0.196078, 1 )
+
 [connection signal="timeout" from="Player/Timer" to="Player" method="_on_Timer_timeout"]

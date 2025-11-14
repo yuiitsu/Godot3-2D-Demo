@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/shader-effects/tear/tear.gd" type="Script" id=1]
+[ext_resource path="res://assets/textures/blank.png" type="Texture" id=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform float dist;
+uniform vec2 scale;
+
+void fragment() {
+	vec2 uv = vec2(0.0);
+	uv.x = mod(SCREEN_UV.x + dist, 1.0);
+	uv.y = SCREEN_UV.y;
+	
+	COLOR = texture(SCREEN_TEXTURE, uv);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/dist = null
+shader_param/scale = Vector2( 1, 1 )
+
+[node name="Tear" type="Node2D"]
+z_index = 10
+script = ExtResource( 1 )
+duration = 0.1
+tear_distance = 0.1
+tear_size = 0.05
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+rect = Rect2( 0, 0, 0, 0 )
+
+[node name="Shader" type="Sprite" parent="."]
+material = SubResource( 2 )
+texture = ExtResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

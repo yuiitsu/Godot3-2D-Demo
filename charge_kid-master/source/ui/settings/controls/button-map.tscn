@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ui/base-nodes/button-model.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/fonts/press-start-2p.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://ui/settings/controls/button-map.gd" type="Script" id=3]
+[ext_resource path="res://ui/settings/controls/change-key-dialog.tscn" type="PackedScene" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[node name="HBoxContainer" type="HBoxContainer"]
+margin_right = 228.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+custom_constants/separation = 64
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Action" type="Label" parent="."]
+margin_top = 3.0
+margin_right = 112.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.964706, 0.964706, 0.901961, 1 )
+text = "Action:"
+
+[node name="Button" parent="." instance=ExtResource( 1 )]
+margin_left = 176.0
+margin_right = 188.0
+margin_bottom = 22.0
+script = ExtResource( 3 )
+dialog_popup = ExtResource( 4 )
+
+[node name="Key" type="Label" parent="."]
+margin_left = 252.0
+margin_top = 3.0
+margin_right = 348.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.964706, 0.964706, 0.901961, 1 )
+text = "Button"
+align = 2
+[connection signal="pressed" from="Button" to="Button" method="_on_BaseControlConfigButton_pressed"]

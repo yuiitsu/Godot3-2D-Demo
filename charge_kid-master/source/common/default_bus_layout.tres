@@ -1,0 +1,98 @@
+[gd_resource type="AudioBusLayout" load_steps=12 format=2]
+
+[sub_resource type="AudioEffectLimiter" id=1]
+resource_name = "Limiter"
+ceiling_db = -0.5
+threshold_db = -9.1
+
+[sub_resource type="AudioEffectReverb" id=2]
+resource_name = "Reverb"
+room_size = 0.6
+wet = 0.22
+
+[sub_resource type="AudioEffectCompressor" id=3]
+resource_name = "Compressor"
+threshold = -8.4
+ratio = 10.3
+
+[sub_resource type="AudioEffectLimiter" id=4]
+resource_name = "Limiter"
+
+[sub_resource type="AudioEffectLowPassFilter" id=5]
+resource_name = "LowPassFilter"
+cutoff_hz = 22000.0
+
+[sub_resource type="AudioEffectPitchShift" id=6]
+resource_name = "PitchShift"
+
+[sub_resource type="AudioEffectHighPassFilter" id=7]
+resource_name = "HighPassFilter"
+cutoff_hz = 150.0
+
+[sub_resource type="AudioEffectReverb" id=8]
+resource_name = "Reverb"
+room_size = 0.67
+damping = 0.34
+dry = 0.69
+wet = 0.41
+
+[sub_resource type="AudioEffectChorus" id=9]
+resource_name = "Chorus"
+dry = 0.11
+wet = 0.73
+
+[sub_resource type="AudioEffectNotchFilter" id=10]
+resource_name = "NotchFilter"
+gain = 0.0
+
+[sub_resource type="AudioEffectStereoEnhance" id=11]
+resource_name = "StereoEnhance"
+
+[resource]
+bus/0/volume_db = -3.11736
+bus/0/effect/0/effect = SubResource( 1 )
+bus/0/effect/0/enabled = true
+bus/1/name = "SFX"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = -3.54298
+bus/1/send = "Master"
+bus/1/effect/0/effect = SubResource( 2 )
+bus/1/effect/0/enabled = false
+bus/1/effect/1/effect = SubResource( 3 )
+bus/1/effect/1/enabled = true
+bus/1/effect/2/effect = SubResource( 4 )
+bus/1/effect/2/enabled = true
+bus/2/name = "MUS"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = -25.7583
+bus/2/send = "Master"
+bus/2/effect/0/effect = SubResource( 5 )
+bus/2/effect/0/enabled = true
+bus/2/effect/1/effect = SubResource( 6 )
+bus/2/effect/1/enabled = true
+bus/2/effect/2/effect = SubResource( 7 )
+bus/2/effect/2/enabled = true
+bus/3/name = "REVERB"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = -13.5101
+bus/3/send = "SFX"
+bus/3/effect/0/effect = SubResource( 8 )
+bus/3/effect/0/enabled = true
+bus/4/name = "DEATH FILTER"
+bus/4/solo = false
+bus/4/mute = false
+bus/4/bypass_fx = false
+bus/4/volume_db = 0.0
+bus/4/send = "REVERB"
+bus/4/effect/0/effect = SubResource( 9 )
+bus/4/effect/0/enabled = true
+bus/4/effect/1/effect = SubResource( 10 )
+bus/4/effect/1/enabled = true
+bus/4/effect/2/effect = SubResource( 11 )
+bus/4/effect/2/enabled = true

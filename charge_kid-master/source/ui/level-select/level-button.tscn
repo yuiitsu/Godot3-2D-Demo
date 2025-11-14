@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/level-select/level-button.gd" type="Script" id=1]
+[ext_resource path="res://ui/base-nodes/button-model.tscn" type="PackedScene" id=2]
+
+[node name="LevelButton" instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+[connection signal="pressed" from="." to="." method="_on_LevelButton_pressed"]

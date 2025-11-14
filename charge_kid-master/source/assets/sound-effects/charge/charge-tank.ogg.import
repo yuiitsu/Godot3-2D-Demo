@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/charge-tank.ogg-94deeb5c56d5f11599ec33fffe1de9ba.oggstr"
+
+[deps]
+
+source_file="res://assets/sound-effects/charge/charge-tank.ogg"
+dest_files=[ "res://.import/charge-tank.ogg-94deeb5c56d5f11599ec33fffe1de9ba.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

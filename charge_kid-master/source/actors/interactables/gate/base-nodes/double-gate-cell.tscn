@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/interactables/gate/base-nodes/triggered-platform.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/interactables/gate/base-nodes/gate-cell.gd" type="Script" id=2]
+
+
+
+
+
+
+[node name="GateCell" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="TriggeredPlatform" parent="." instance=ExtResource( 1 )]
+rotation = -1.5708
+
+[node name="TriggeredPlatform2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 16, 0 )
+rotation = 1.5708
+
+[node name="DelayTimer" type="Timer" parent="."]

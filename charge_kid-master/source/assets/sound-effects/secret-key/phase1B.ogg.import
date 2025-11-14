@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/phase1B.ogg-24011a4b54042cf1e4bb6e86f13f6a2c.oggstr"
+
+[deps]
+
+source_file="res://assets/sound-effects/secret-key/phase1B.ogg"
+dest_files=[ "res://.import/phase1B.ogg-24011a4b54042cf1e4bb6e86f13f6a2c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

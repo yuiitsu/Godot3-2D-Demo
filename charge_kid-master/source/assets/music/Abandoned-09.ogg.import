@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Abandoned-09.ogg-48aae94394ad26f108cce6ea9bf31808.oggstr"
+
+[deps]
+
+source_file="res://assets/music/Abandoned-09.ogg"
+dest_files=[ "res://.import/Abandoned-09.ogg-48aae94394ad26f108cce6ea9bf31808.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

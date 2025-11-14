@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/pickup0.ogg-78d65b8783266ba3a27de126d0f2827e.oggstr"
+
+[deps]
+
+source_file="res://assets/sound-effects/charge/pickup0.ogg"
+dest_files=[ "res://.import/pickup0.ogg-78d65b8783266ba3a27de126d0f2827e.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

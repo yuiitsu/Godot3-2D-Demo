@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/particles.ogg-a4596fd205c71c86c140549d61a1e26d.oggstr"
+
+[deps]
+
+source_file="res://assets/sound-effects/secret-key/particles.ogg"
+dest_files=[ "res://.import/particles.ogg-a4596fd205c71c86c140549d61a1e26d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/base-nodes/button-model.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/press-start-2p.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 2 )
+
+[node name="ButtonModel" type="Button"]
+margin_right = 12.0
+margin_bottom = 20.0
+mouse_filter = 2
+size_flags_horizontal = 4
+custom_styles/focus = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color_disabled = Color( 0.141176, 0.164706, 0.231373, 1 )
+custom_colors/font_color = Color( 0.956863, 0.956863, 0.894118, 1 )
+custom_colors/font_color_hover = Color( 1, 0.309804, 0.470588, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.309804, 0.470588, 1 )
+button_mask = 0
+flat = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+switch_option_time = 0.1
+[connection signal="pressed" from="." to="." method="_on_ButtonModel_pressed"]
